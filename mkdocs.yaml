@@ -1,0 +1,59 @@
+site_name: CI/CD Examples
+site_description: Examples on how to develop CI/CD pipelines and how to configure development environment for working with CI/CD pipelines.
+site_url: https://kangasta.github.io/cicd-examples/
+repo_name: kangasta/cicd-examples
+repo_url: https://github.com/kangasta/cicd-examples
+copyright: Copyright &copy; 2020 Toni Kangas
+
+docs_dir: examples/
+
+nav:
+- Home: index.md
+- Docker:
+  - ./docker/docker-on-wsl.md
+- Jenkins:
+  - ./jenkins/dind-jenkins/README.md
+  - ./jenkins/ansible-kubernetes/README.md
+  - ./jenkins/build-status-pipelines/README.md
+  - ./jenkins/parallel-robot-pipeline/README.md
+  - ./jenkins/sonarqube-jenkins/README.md
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: blue grey
+    accent: deep orange
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: blue grey
+    accent: deep orange
+    toggle:
+      icon: material/weather-night
+      name: Switch to light mode
+  font:
+    text: Source Sans Pro
+    code: Source Code Pro
+  favicon: favicon.png
+  language: en
+  features:
+    - navigation.instant
+    - navigation.sections
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true

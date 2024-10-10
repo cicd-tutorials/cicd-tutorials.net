@@ -1,12 +1,10 @@
-name: Deploy
+name: CI
 on:
-  push:
-    branches:
-    - main
+  pull_request:
 
 jobs:
-  deploy-pages:
-    name: Pages
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -21,11 +19,3 @@ jobs:
     - name: Build site
       run: |
         mkdocs build
-        touch site/.nojekyll
-    - name: Deploy to pages
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: site
-        CLEAN: true

@@ -1,2 +1,2 @@
 robotframework>=4
-robotframework-seleniumlibrary>=4
+robotframework-browser>=18

@@ -24,7 +24,7 @@
     
     
       
-        <title>Docker on WSL - CI/CD Examples</title>
+        <title>Install Docker on Windows Subsystem for Linux (WSL) - CI/CD Examples</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-on-wsl" class="md-skip">
+        <a href="#install-docker-on-windows-subsystem-for-linux-wsl" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker on WSL
+              Install Docker on Windows Subsystem for Linux (WSL)
             
           </span>
         </div>
@@ -352,7 +352,7 @@
           
   
   <span class="md-ellipsis">
-    Docker on WSL
+    Install Docker on Windows Subsystem for Linux (WSL)
   </span>
   
 
@@ -363,7 +363,7 @@
         
   
   <span class="md-ellipsis">
-    Docker on WSL
+    Install Docker on Windows Subsystem for Linux (WSL)
   </span>
   
 
@@ -421,9 +421,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-docker-daemon" class="md-nav__link">
+  <a href="#ensure-docker-daemon-is-running" class="md-nav__link">
     <span class="md-ellipsis">
-      Start Docker daemon
+      Ensure Docker daemon is running
     </span>
   </a>
   
@@ -669,9 +669,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-docker-daemon" class="md-nav__link">
+  <a href="#ensure-docker-daemon-is-running" class="md-nav__link">
     <span class="md-ellipsis">
-      Start Docker daemon
+      Ensure Docker daemon is running
     </span>
   </a>
   
@@ -717,7 +717,7 @@
   
 
 
-<h1 id="docker-on-wsl">Docker on WSL</h1>
+<h1 id="install-docker-on-windows-subsystem-for-linux-wsl">Install Docker on Windows Subsystem for Linux (WSL)</h1>
 <p>If you do not already have Windows Subsystem for Linux (WSL) installed, see <a href="https://docs.microsoft.com/en-us/windows/wsl/install">Install Linux on Windows with WSL</a> for instructions.</p>
 <p>This document describes how to configure WSL 2, install recent version of Ubuntu (24.04 LTS), and install Docker as well as Docker compose.</p>
 <h2 id="configure-wsl-settings">Configure WSL settings</h2>
@@ -736,74 +736,101 @@
 <div class="language-pwsh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-list</span> <span class="p">-</span><span class="n">-verbose</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-version</span> <span class="s2">&quot;YOUR_DISTRO_HERE&quot;</span> <span class="n">2</span>
 </span></code></pre></div>
+<details class="bug">
+<summary>WSL commands only output usage instructions</summary>
+<p>If the <code>wsl</code> command outputs usage instructions instead of the expected output regardless of given parameters, ensure that your system has following Windows features enabled:</p>
+<ul>
+<li>Windows Subsystem for Linux</li>
+<li>Virtual Machine Platform</li>
+<li>Hyper-V</li>
+</ul>
+<p>To do this, open the <em>Turn Windows Features on or off</em> dialog from <em>Start</em> menu, Settings, or Control Panel, and ensure that the features mentioned above are selected.</p>
+</details>
 <h2 id="install-recent-version-of-ubuntu">Install recent version of Ubuntu</h2>
-<p>Install recent version of Ubuntu from either Microsoft Store or PowerShell. These instructions use Ubuntu 22.04. Other distributions might also work, if you know what you are doing.</p>
-<p>If you want to install distro through the PowerShell, run <code>wsl --list --online</code> and follow the instructions.</p>
+<p>Install recent version of Ubuntu from either Microsoft Store or PowerShell. These instructions use Ubuntu 24.04. Other distributions might also work, if you know what you are doing.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">PowerShell</label><label for="__tabbed_1_2">Microsoft Store</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>If you want to install distro through the PowerShell, run <code>wsl --list --online</code> and follow the instructions:</p>
 <div class="language-pwsh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-list</span> <span class="p">-</span><span class="n">-online</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span> <span class="n">-d</span> <span class="n">Ubuntu</span><span class="p">-</span><span class="n">24</span><span class="p">.</span><span class="n">04</span>
 </span></code></pre></div>
-<p>If you want to install distro through Microsoft Store: Open Microsoft Store, search for <code>Ubuntu 22</code>, select <em>Ubuntu 22.04 LTS</em>, and click <em>Install</em>.</p>
-<p>If not opened automatically, open the installed Ubuntu distro and follow instruction in installation wizard.</p>
+</div>
+<div class="tabbed-block">
+<p>If you want to install distro through Microsoft Store: Open Microsoft Store, search for <code>Ubuntu 24</code>, select <em>Ubuntu 24.04 LTS</em>, and click <em>Install</em>.</p>
+</div>
+</div>
+</div>
+<hr />
+<p>If not launched automatically, open the installed Ubuntu distro (e.g., by clicking it in the <em>Start</em> menu) and follow instruction in installation wizard. You will have to choose an username and a password to use in the WSL instance. To make your life easier, use only lowercase letters and numbers in your Linux username.</p>
 <h2 id="install-docker">Install Docker</h2>
 <p>Open Ubuntu you just installed and follow <a href="https://docs.docker.com/engine/install/ubuntu/">Install Docker Engine on Ubuntu</a> instructions.</p>
 <p><strong>tl;dr:</strong> Run the convenience script available in <code>get.docker.com</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://get.docker.com<span class="w"> </span>-o<span class="w"> </span>get-docker.sh
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://get.docker.com<span class="w"> </span>-o<span class="w"> </span>get-docker.sh
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 </span></code></pre></div>
 <p>Ignore the <code>WSL DETECTED: We recommend using Docker Desktop for Windows.</code> warning.</p>
 <p>To be able to run docker commands without <code>sudo</code>, add current user to <code>docker</code> group with <code>usermod</code>. Note that you might have to logout and login for the changes to take effect.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
 </span></code></pre></div>
 <h2 id="configure-networking">Configure networking</h2>
 <p>By default, WSL 2 uses local DNS server to reflect network settings, such as VPN, from the host Windows to WSL instances. The IP address of this DNS server might fall into IP range used by the Dockers default bridge network. In that case, containers will not be able to resolve domains.</p>
-<p>To configure working DNS inside containers you can either use public DNS or modify IP range used by Dockers default network. If you are working behind a corporate firewall, public DNS might not work.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Use public DNS in WSL 2</label><label for="__tabbed_1_2">Configure IP range for Docker</label></div>
+<p>To configure working DNS inside containers you can either modify IP range used by Dockers default network or use public DNS. If you are working behind a corporate firewall, public DNS might not work.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Configure IP range for Docker</label><label for="__tabbed_2_2">Use public DNS in WSL 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>To use public DNS, you must first disable WSL from automatically generating DNS settings to <code>/etc/resolv.conf</code>. To do this, add following rows to <code>/etc/wsl.conf</code> file in your WSL instance, for example, by editing (or creating) it with <code>sudo nano /etc/wsl.conf</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[network]
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>generateResolvConf = false
-</span></code></pre></div>
-<p>For the changes to take effect, restart WSL by running <code>wsl --shutdown</code> in powershell and launching WSL instance again.</p>
-<div class="language-pwsh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-shutdown</span>
-</span></code></pre></div>
-<p>Finally, configure DNS server manually by creating <code>/etc/resolv.conf</code> with following content, for example by opening it with <code>sudo nano /etc/resolv.conf</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>nameserver 8.8.8.8
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
 <p>To configure Docker to use IP ranges that wont overlap with DNS server configured by WSL, add following content to <code>/etc/docker/daemon.json</code>, for example, by opening it with <code>sudo nano /etc/docker/daemon.json</code>:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">&quot;bip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.21.0.1/16&quot;</span><span class="p">,</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">&quot;default-address-pools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="nt">&quot;base&quot;</span><span class="p">:</span><span class="s2">&quot;172.22.0.0/16&quot;</span><span class="p">,</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">      </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="mi">24</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="p">]</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">}</span>
+<div class="language-json highlight"><span class="filename">/etc/docker/daemon.json</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;bip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;172.21.0.1/16&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;default-address-pools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">      </span><span class="nt">&quot;base&quot;</span><span class="p">:</span><span class="s2">&quot;172.22.0.0/16&quot;</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">      </span><span class="nt">&quot;size&quot;</span><span class="p">:</span><span class="mi">24</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>If you already have dockerd running, you have to restart it for the changes to take effect.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>docker<span class="w"> </span>restart
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>docker<span class="w"> </span>restart
 </span></code></pre></div>
-<p>If containers cannot resolve domains with above configuration, ensure that the above networks do not overlap with the DNS server configured by WSL by running <code>ipconfig</code> in powershell and checking the networks it outputs.</p>
+<p>If containers cannot resolve domains or have other issues with internet access with above configuration, ensure that the above networks do not overlap with network interface configured by WSL. To do this, run <code>ip a</code> or <code>ifconfig</code> command ( or <code>ipconfig</code> in powershell) and check the IP address assigned for <code>eth0</code> interface it output. If the second part of the IP address matches either IP block defined in the above configuration, change the value in <code>/etc/docker/daemon.json</code>. Any private IP v4 address block should work. You can use, for example, some blocks between <code>172.16.0.0/16</code> and <code>172.31.0.0/16</code>, i.e., change the second part of the IP address.</p>
+</div>
+<div class="tabbed-block">
+<p>To use public DNS, you must first disable WSL from automatically generating DNS settings to <code>/etc/resolv.conf</code>. To do this, add following rows to <code>/etc/wsl.conf</code> file in your WSL instance, for example, by editing (or creating) it with <code>sudo nano /etc/wsl.conf</code>:</p>
+<div class="language-text highlight"><span class="filename">/etc/wsl.conf</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[network]
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>generateResolvConf = false
+</span></code></pre></div>
+<p>For the changes to take effect, restart WSL by running <code>wsl --shutdown</code> in powershell and launching WSL instance again.</p>
+<div class="language-pwsh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-shutdown</span>
+</span></code></pre></div>
+<p>Finally, configure DNS server manually by creating <code>/etc/resolv.conf</code> with following content, for example by opening it with <code>sudo nano /etc/resolv.conf</code>:</p>
+<div class="language-text highlight"><span class="filename">/etc/resolv.conf</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>nameserver 8.8.8.8
+</span></code></pre></div>
 </div>
 </div>
 </div>
-<h2 id="start-docker-daemon">Start Docker daemon</h2>
-<p>Start <code>dockerd</code> as a background process by using <code>service</code> or, alternatively, start <code>dockerd</code> directly.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>docker<span class="w"> </span>start
+<hr />
+<h2 id="ensure-docker-daemon-is-running">Ensure Docker daemon is running</h2>
+<p>Recent version of WSL enable systemd by default. In this case, Docker daemon should be started automatically when ever WSL is running. To verify Docker has been started, run the hello-world container:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>run<span class="w"> </span>hello-world
 </span></code></pre></div>
-<p>Note that this must be done every time WSL is restarted. If <code>docker</code> commands print <code>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</code> error, run <code>sudo service docker status</code> command to check if <code>dockerd</code> is running and, if necessary, run <code>sudo service docker start</code> command again.</p>
-<p>If you are working on Windows 11, you can use <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config#boot-settings">boot settings</a> to start Docker daemon automatically on WSL instance startup. To do this, add following rows to <code>/etc/wsl.conf</code> file in your WSL instance, for example, by editing (or creating) it with <code>sudo nano /etc/wsl.conf</code>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>[boot]
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>command = service docker start
+<p>If Docker was not started automatically, start <code>dockerd</code> as a background process by using <code>service</code> or, alternatively, start <code>dockerd</code> directly.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>service<span class="w"> </span>docker<span class="w"> </span>start
 </span></code></pre></div>
+<p>If <code>docker</code> commands print <code>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</code> error, run <code>sudo service docker status</code> command to check if <code>dockerd</code> is running and, if necessary, run <code>sudo service docker start</code> command to start the Docker service.</p>
+<details class="example">
+<summary>Launch docker with boot settings</summary>
+<p>If you are working on earlier version of Windows 11, you can use <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config#boot-settings">boot settings</a> to start Docker daemon automatically on WSL instance startup. To do this, add following rows to <code>/etc/wsl.conf</code> file in your WSL instance, for example, by editing (or creating) it with <code>sudo nano /etc/wsl.conf</code>.</p>
+<div class="language-text highlight"><span class="filename">/etc/wsl.conf</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>[boot]
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>command = service docker start
+</span></code></pre></div>
+<p>Note that this should not be done if systemd is enabled.</p>
+</details>
 <h2 id="install-docker-compose">Install Docker compose</h2>
 <p>Follow <a href="https://docs.docker.com/compose/install/">Install Docker Compose</a> instructions for Linux.</p>
 <p><strong>tl;dr:</strong> Install Docker Compose with the distros package manager:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker-compose-plugin
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>docker-compose-plugin
 </span></code></pre></div>
 
 

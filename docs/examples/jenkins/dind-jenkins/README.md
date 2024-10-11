@@ -11,19 +11,19 @@ export COMPOSE_PROJECT_NAME=jenkins
 To be able run Docker commands from inside the Jenkins container, we will need to install the Docker client. This can be done with a suitable Dockerfile:
 
 ```Dockerfile title="Dockerfile"
---8<-- "examples/jenkins/dind-jenkins/Dockerfile"
+--8<-- "docs/examples/jenkins/dind-jenkins/Dockerfile"
 ```
 
 When running this container, we will want to define ports and volumes. To do this, we will use a `docker-compose.yml` configuration:
 
 ```yaml title="docker-compose.yml"
---8<-- "examples/jenkins/dind-jenkins/docker-compose.yml"
+--8<-- "docs/examples/jenkins/dind-jenkins/docker-compose.yml"
 ```
 
-These files are available in the repository that provides this website. In order to run Jenkins container with Docker-in-Docker support, `cd` into `examples/jenkins/dind-jenkins` directory and run `docker compose up`.
+These files are available in the repository that provides this website. In order to run Jenkins container with Docker-in-Docker support, `cd` into `docs/examples/jenkins/dind-jenkins` directory and run `docker compose up`.
 
 ```sh
-cd examples/jenkins/dind-jenkins
+cd docs/examples/jenkins/dind-jenkins
 
 # If you want to see logs in the current terminal
 docker compose up --build

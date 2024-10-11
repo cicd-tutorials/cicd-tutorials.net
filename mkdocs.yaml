@@ -5,23 +5,24 @@ repo_name: kangasta/cicd-examples
 repo_url: https://github.com/kangasta/cicd-examples
 copyright: Copyright &copy; 2020 Toni Kangas
 
-docs_dir: examples/
-edit_uri: edit/main/examples/
+docs_dir: docs/
+edit_uri: edit/main/docs/
 
 nav:
-- Home: index.md
+- Home: README.md
 - Docker:
-  - ./docker/docker-on-wsl.md
+  - ./examples/docker/docker-on-wsl/README.md
 - Jenkins:
-  - ./jenkins/dind-jenkins/README.md
-  - ./jenkins/ansible-kubernetes/README.md
-  - ./jenkins/build-status-pipelines/README.md
-  - ./jenkins/parallel-robot-pipeline/README.md
-  - ./jenkins/sonarqube-jenkins/README.md
+  - ./examples/jenkins/dind-jenkins/README.md
+  - ./examples/jenkins/ansible-kubernetes/README.md
+  - ./examples/jenkins/build-status-pipelines/README.md
+  - ./examples/jenkins/parallel-robot-pipeline/README.md
+  - ./examples/jenkins/sonarqube-jenkins/README.md
 
 theme:
   name: material
   custom_dir: overrides
+  favicon: assets/favicon.png
   palette:
   - media: "(prefers-color-scheme: light)"
     scheme: default
@@ -40,7 +41,6 @@ theme:
   font:
     text: Source Sans Pro
     code: Source Code Pro
-  favicon: favicon.png
   language: en
   features:
     - content.action.edit
@@ -53,7 +53,6 @@ plugins:
   - git-committers:
       repository: kangasta/cicd-examples
       branch: main
-      docs_path: examples/
   - git-revision-date-localized:
       enable_creation_date: true
 

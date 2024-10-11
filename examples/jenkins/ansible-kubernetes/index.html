@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://kangasta.github.io/cicd-examples/jenkins/build-status-pipelines/">
+        <link rel="canonical" href="https://kangasta.github.io/cicd-examples/examples/jenkins/ansible-kubernetes/">
       
       
-        <link rel="prev" href="../ansible-kubernetes/">
+        <link rel="prev" href="../dind-jenkins/">
       
       
-        <link rel="next" href="../parallel-robot-pipeline/">
+        <link rel="next" href="../build-status-pipelines/">
       
       
-      <link rel="icon" href="../../favicon.png">
+      <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
-        <title>Build status pipelines and Job DSL - CI/CD Examples</title>
+        <title>Deploy application to Kubernetes with Ansible - CI/CD Examples</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,7 +50,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-status-pipelines-and-job-dsl" class="md-skip">
+        <a href="#deploy-application-to-kubernetes-with-ansible" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="CI/CD Examples" class="md-header__button md-logo" aria-label="CI/CD Examples" data-md-component="logo">
+    <a href="../../.." title="CI/CD Examples" class="md-header__button md-logo" aria-label="CI/CD Examples" data-md-component="logo">
       <svg
   width="32"
   height="32"
@@ -100,10 +100,12 @@
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M 3 2 A 1 1 0 0 0 3 4 A 1 1 0 0 0 3 2 M 3 4 L 3 10 A 3 3 0 0 0 6 13 L 10 13 M 8 11 L 10 13 L 8 15 M 13 12 A 1 1 0 0 0 13 14 A 1 1 0 0 0 13 12 M 13 12 L 13 6 A 3 3 0 0 0 10 3 L 6 3 M 8 1 L 6 3 L 8 5"
+    d="M 3 1 A 1 1 0 0 0 3 4 A 1 1 0 0 0 3 1 M 3 4 L 3 11.5 A 2 2 0 0 0 5 13.5 L 10.5 13.5 M 9 12 L 10.5 13.5 L 9 15 M 13.5 12 A 1 1 0 0 0 13.5 15 A 1 1 0 0 0 13.5 12 M 13.5 12 L 13.5 4.5 A 2 2 0 0 0 11.5 2.5 L 6 2.5 M 7.5 1 L 6 2.5 L 7.5 4"
     fill="none"
     stroke="currentColor"
+    stroke-linecap="round"
     stroke-linejoin="round"
+    stroke-width="1.125px"
   ></path>
 </svg>
     </a>
@@ -121,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Build status pipelines and Job DSL
+              Deploy application to Kubernetes with Ansible
             
           </span>
         </div>
@@ -234,7 +236,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="CI/CD Examples" class="md-nav__button md-logo" aria-label="CI/CD Examples" data-md-component="logo">
+    <a href="../../.." title="CI/CD Examples" class="md-nav__button md-logo" aria-label="CI/CD Examples" data-md-component="logo">
       <svg
   width="32"
   height="32"
@@ -242,10 +244,12 @@
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M 3 2 A 1 1 0 0 0 3 4 A 1 1 0 0 0 3 2 M 3 4 L 3 10 A 3 3 0 0 0 6 13 L 10 13 M 8 11 L 10 13 L 8 15 M 13 12 A 1 1 0 0 0 13 14 A 1 1 0 0 0 13 12 M 13 12 L 13 6 A 3 3 0 0 0 10 3 L 6 3 M 8 1 L 6 3 L 8 5"
+    d="M 3 1 A 1 1 0 0 0 3 4 A 1 1 0 0 0 3 1 M 3 4 L 3 11.5 A 2 2 0 0 0 5 13.5 L 10.5 13.5 M 9 12 L 10.5 13.5 L 9 15 M 13.5 12 A 1 1 0 0 0 13.5 15 A 1 1 0 0 0 13.5 12 M 13.5 12 L 13.5 4.5 A 2 2 0 0 0 11.5 2.5 L 6 2.5 M 7.5 1 L 6 2.5 L 7.5 4"
     fill="none"
     stroke="currentColor"
+    stroke-linecap="round"
     stroke-linejoin="round"
+    stroke-width="1.125px"
   ></path>
 </svg>
     </a>
@@ -273,7 +277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -421,27 +425,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../ansible-kubernetes/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Deploy application to Kubernetes with Ansible
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -458,7 +441,7 @@
           
   
   <span class="md-ellipsis">
-    Build status pipelines and Job DSL
+    Deploy application to Kubernetes with Ansible
   </span>
   
 
@@ -469,7 +452,7 @@
         
   
   <span class="md-ellipsis">
-    Build status pipelines and Job DSL
+    Deploy application to Kubernetes with Ansible
   </span>
   
 
@@ -491,6 +474,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#preparing-the-jenkins-instance" class="md-nav__link">
     <span class="md-ellipsis">
       Preparing the Jenkins instance
@@ -500,9 +492,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-and-running-the-seed-project" class="md-nav__link">
+  <a href="#configure-the-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating and running the seed project
+      Configure the pipeline
     </span>
   </a>
   
@@ -512,6 +504,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build-status-pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build status pipelines and Job DSL
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -593,6 +606,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#preparing-the-jenkins-instance" class="md-nav__link">
     <span class="md-ellipsis">
       Preparing the Jenkins instance
@@ -602,9 +624,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-and-running-the-seed-project" class="md-nav__link">
+  <a href="#configure-the-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating and running the seed project
+      Configure the pipeline
     </span>
   </a>
   
@@ -625,7 +647,7 @@
                   
 
   
-    <a href="https://github.com/kangasta/cicd-examples/edit/main/examples/jenkins/build-status-pipelines/README.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/kangasta/cicd-examples/edit/main/docs/examples/jenkins/ansible-kubernetes/README.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -634,26 +656,33 @@
     
       
     
-    <a href="https://github.com/kangasta/cicd-examples/raw/main/examples/jenkins/build-status-pipelines/README.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/kangasta/cicd-examples/raw/main/docs/examples/jenkins/ansible-kubernetes/README.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="build-status-pipelines-and-job-dsl">Build status pipelines and Job DSL</h1>
-<p>This example contains pipelines to produce builds with success, unstable, failed, aborted, and not-built statuses as well as Job DSL script to create a folder with projects that have these five different statuses.</p>
+<h1 id="deploy-application-to-kubernetes-with-ansible">Deploy application to Kubernetes with Ansible</h1>
+<p>This example contains a pipeline that deploys an simple hello-world application to a Kubernetes cluster.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You will need a running Kubernetes cluster, that supports services with <code>LoadBalancer</code> type, and a kubeconfig file that can be used to deploy application (a deployment and a service) into the cluster.</p>
 <h2 id="preparing-the-jenkins-instance">Preparing the Jenkins instance</h2>
-<p>The pipeline provided by this example can be added to any Jenkins instance you have administrator access. For example, Jenkins configuration from <a href="../dind-jenkins/">Docker-in-Docker</a> example can be used.</p>
-<p>In order to be able to run the seed project we will need <a href="https://plugins.jenkins.io/job-dsl/">Job DSL</a> plugin. Install the plugin through Available tab in <a href="http://localhost:8080/pluginManager/available">Manage Jenkins &gt; Manage Plugins</a>.</p>
-<h2 id="creating-and-running-the-seed-project">Creating and running the seed project</h2>
-<p>To run the job DSL script, create a new pipeline with following script as an inline pipeline script and run the created pipeline.</p>
-<div class="language-groovy highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">node</span><span class="w"> </span><span class="o">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">git</span><span class="w"> </span><span class="nl">branch:</span><span class="w"> </span><span class="s1">&#39;main&#39;</span><span class="o">,</span><span class="w"> </span><span class="nl">url:</span><span class="w"> </span><span class="s1">&#39;https://github.com/kangasta/jenkins-examples.git&#39;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">jobDsl</span><span class="w"> </span><span class="nl">targets:</span><span class="w"> </span><span class="s1">&#39;build-status-pipelines/jobs.groovy&#39;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">}</span>
-</span></code></pre></div>
-<p>The execution will likely fail with <code>ERROR: script not yet approved for use</code> message. To enable this script, navigate to <a href="http://localhost:8080/scriptApproval/">Manage Jenkins &gt; In-process Script Approval</a>, inspect the script, and click Approve. Then try to run the created seed project again. It should now succeed and list the created resources.</p>
+<p>The pipeline provided by this example can be added to any Jenkins instance you have administrator access and can run pipeline stages with docker agent. For example, Jenkins configuration from <a href="../dind-jenkins/">Docker-in-Docker</a> example can be used.</p>
+<p>We will use secret file to configure credentials for managing the target Kubernetes cluster. To create the secret file credential, open <em>Global credentials</em> from <em>Jenkins</em> credentials store from <a href="http://localhost:8080/credentials/">Manage Jenkins &gt; Manage Credentials</a> and click <em>Add Credentials</em> from the left side menu.</p>
+<p>In the <em>New credentials</em> form:</p>
+<ol>
+<li>Select <em>Secret file</em> as the credential <em>kind</em></li>
+<li>Upload your kubeconfig to the <em>file</em> input</li>
+<li>Configure <em>ID</em> for the credential. <a href="Jenkinsfile">Jenkinsfile</a> uses <code>kubeconfig</code> as the ID.</li>
+<li>(Optionally) add a description.</li>
+</ol>
+<h2 id="configure-the-pipeline">Configure the pipeline</h2>
+<p>First, create a new pipeline via <a href="http://localhost:8080/view/all/newJob">New Item</a> button in the rigth side menu of the Jenkins dashboard. The name of the pipeline could be for example <code>Animals</code> and it should be an pipeline.</p>
+<p>In the configure pipeline view, scroll to the bottom and under Pipeline sub-header select <code>Pipeline script from SCM</code>. SCM type should be <code>Git</code> and Repository URL the url of this repository: <code>https://github.com/kangasta/jenkins-examples.git</code>. Ensure that branch specifier includes <code>main</code> branch of the repository and modify the Script Path to be <code>ansible-kubernetes\Jenkinsfile</code>.</p>
+<p>After you have created the pipeline, try to execute it by clicking <em>Build Now</em>. The pipeline should have deployed the example application into the Kubernetes cluster with the default image tag (<code>cow</code>) defined in the <a href="deploy-to-kubernetes.yml">deploy-to-kubernetes.yml</a> Ansible playbook.</p>
+<p>You can find the URL of the created load-balancer from the console output of the build. Open the application with your browser or user curl to see the application response.</p>
+<p>In addition, after the first execution Jenkins should have updated the project configuration to contain parameters defined in the pipeline and we can configure the image tag in <em>Build with Parameters</em> menu.</p>
 
 
 
@@ -676,7 +705,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 10, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 11, 2024</span>
   </span>
 
     
@@ -707,6 +736,11 @@
         <a href="https://github.com/kangasta" class="md-author" title="@kangasta">
           
           <img src="https://avatars.githubusercontent.com/u/6261016?v=4&size=72" alt="kangasta">
+        </a>
+      
+        <a href="https://github.com/web-flow" class="md-author" title="@web-flow">
+          
+          <img src="https://avatars.githubusercontent.com/u/19864447?v=4&size=72" alt="web-flow">
         </a>
       
       
@@ -759,10 +793,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "navigation.instant", "navigation.sections"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.action.view", "navigation.instant", "navigation.sections"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
       
     
   </body>

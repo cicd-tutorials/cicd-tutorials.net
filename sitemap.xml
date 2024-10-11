@@ -5,27 +5,27 @@
          <lastmod>2024-10-11</lastmod>
     </url>
     <url>
-         <loc>https://kangasta.github.io/cicd-examples/docker/docker-on-wsl/</loc>
+         <loc>https://kangasta.github.io/cicd-examples/examples/docker/docker-on-wsl/</loc>
          <lastmod>2024-10-11</lastmod>
     </url>
     <url>
-         <loc>https://kangasta.github.io/cicd-examples/jenkins/ansible-kubernetes/</loc>
+         <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/ansible-kubernetes/</loc>
          <lastmod>2024-10-11</lastmod>
     </url>
     <url>
-         <loc>https://kangasta.github.io/cicd-examples/jenkins/build-status-pipelines/</loc>
+         <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/build-status-pipelines/</loc>
          <lastmod>2024-10-11</lastmod>
     </url>
     <url>
-         <loc>https://kangasta.github.io/cicd-examples/jenkins/dind-jenkins/</loc>
+         <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/dind-jenkins/</loc>
          <lastmod>2024-10-11</lastmod>
     </url>
     <url>
-         <loc>https://kangasta.github.io/cicd-examples/jenkins/parallel-robot-pipeline/</loc>
+         <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/parallel-robot-pipeline/</loc>
          <lastmod>2024-10-11</lastmod>
     </url>
     <url>
-         <loc>https://kangasta.github.io/cicd-examples/jenkins/sonarqube-jenkins/</loc>
+         <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/sonarqube-jenkins/</loc>
          <lastmod>2024-10-11</lastmod>
     </url>
 </urlset>

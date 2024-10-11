@@ -3,7 +3,7 @@ site_description: Examples on how to develop CI/CD pipelines and how to configur
 site_url: https://kangasta.github.io/cicd-examples/
 repo_name: kangasta/cicd-examples
 repo_url: https://github.com/kangasta/cicd-examples
-copyright: Copyright &copy; 2020 Toni Kangas
+copyright: CI/CD Examples is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:18px!important;margin-left:9px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt=""><img style="height:18px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt=""><img style="height:18px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt=""><img style="height:18px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt=""></a>
 
 docs_dir: docs/
 edit_uri: edit/main/docs/

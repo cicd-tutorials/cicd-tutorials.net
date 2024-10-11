@@ -14,8 +14,8 @@ on:
     - .github/workflows/parallel-robot-pipeline.yml
 
 jobs:
-  build:
-    name: Build container image
+  run:
+    name: Build, test, and push container image
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -24,66 +24,27 @@ jobs:
       working-directory: docs/examples/jenkins/parallel-robot-pipeline/
       run: |
         docker build . --tag rf-screenshot
-        docker save -o /tmp/rf-screenshot.tar rf-screenshot
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: rf-screenshot
-        path: /tmp/rf-screenshot.tar
-        retention-days: 1
-  test:
-    name: Test container image
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        browser:
-        - firefox
-        - chromium
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: rf-screenshot
-        path: /tmp
-    - name: Load container image
-      run: |
-        docker load --input /tmp/rf-screenshot.tar
-        docker image ls -a
     - name: Test container image
       run: |
-        docker run --rm -v $(pwd)/robot_output:/out -e BROWSER=${{ matrix.browser }} rf-screenshot -d /out -l none -r none -o ${{ matrix.browser }}.xml -N ${{ matrix.browser }} -v URL:https://kangasta.github.io/cicd-examples/
+        for browser in chromium firefox; do
+          docker run --rm -v $(pwd)/robot_output:/out -e BROWSER=$browser rf-screenshot -d /out -l none -r none -o $browser.xml -N $browser -v URL:https://kangasta.github.io/cicd-examples/
+        done
     - name: Store logs
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ matrix.browser }}-logs
+        name: raw-logs
         path: robot_output
         retention-days: 1
-  push:
-    name: Push container image
-    if: github.ref == 'refs/heads/main'
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: rf-screenshot
-        path: /tmp
-    - name: Load container image
-      run: |
-        docker load --input /tmp/rf-screenshot.tar
-        docker image ls -a
     - name: Login to GitHub Container Registry
+      if: github.ref == 'refs/heads/main'
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Push container image to GitHub Container Registry
+      if: github.ref == 'refs/heads/main'
       working-directory: docs/examples/jenkins/parallel-robot-pipeline/
       run: |
         docker build . --target base -t base
@@ -95,7 +56,7 @@ jobs:
   process-logs:
     name: Process logs
     if: always()
-    needs: test
+    needs: run
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-python@v4

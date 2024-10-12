@@ -14,9 +14,9 @@ To run the job DSL script, create a new pipeline with following script as an inl
 
 ```groovy
 node {
-    git branch: 'main', url: 'https://github.com/kangasta/jenkins-examples.git'
-    jobDsl targets: 'build-status-pipelines/jobs.groovy'
+    git branch: 'main', url: 'https://github.com/kangasta/cicd-examples.git'
+    jobDsl targets: 'docs/examples/jenkins/build-status-pipelines/jobs.groovy'
 }
 ```
 
-The execution will likely fail with `ERROR: script not yet approved for use` message. To enable this script, navigate to [Manage Jenkins > In-process Script Approval](http://localhost:8080/scriptApproval/), inspect the script, and click Approve. Then try to run the created seed project again. It should now succeed and list the created resources.
+The execution will likely fail with `ERROR: script not yet approved for use` message. To enable this script, navigate to [Manage Jenkins > In-process Script Approval](http://localhost:8080/scriptApproval/), inspect the script, and click _Approve_. Then try to run the created seed project again. It should now succeed and list the created resources.

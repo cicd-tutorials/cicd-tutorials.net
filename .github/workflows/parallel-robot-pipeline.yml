@@ -1,0 +1,80 @@
+name: Parallel Robot Framework pipeline
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - docs/examples/jenkins/parallel-robot-pipeline/**
+    - .github/workflows/parallel-robot-pipeline.yml
+  pull_request:
+    branches:
+    - main
+    paths:
+    - docs/examples/jenkins/parallel-robot-pipeline/**
+    - .github/workflows/parallel-robot-pipeline.yml
+
+jobs:
+  run:
+    name: Build, test, and push container image
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Build container image
+      working-directory: docs/examples/jenkins/parallel-robot-pipeline/
+      run: |
+        docker build . --tag rf-screenshot
+    - name: Test container image
+      run: |
+        for browser in chromium firefox; do
+          docker run --rm -v $(pwd)/robot_output:/out -e BROWSER=$browser rf-screenshot -d /out -l none -r none -o $browser.xml -N $browser -v URL:https://kangasta.github.io/cicd-examples/
+        done
+    - name: Store logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: raw-logs
+        path: robot_output
+        retention-days: 1
+    - name: Login to GitHub Container Registry
+      if: github.ref == 'refs/heads/main'
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push container image to GitHub Container Registry
+      if: github.ref == 'refs/heads/main'
+      working-directory: docs/examples/jenkins/parallel-robot-pipeline/
+      run: |
+        docker build . --target base -t base
+
+        for tag in ${{ github.run_number }} latest; do
+          docker tag base ghcr.io/kangasta/robot-browser:$tag
+          docker push ghcr.io/kangasta/robot-browser:$tag
+        done
+  process-logs:
+    name: Process logs
+    if: always()
+    needs: run
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Download logs
+      uses: actions/download-artifact@v3
+      with:
+        path: work/
+    - name: Install robot framework
+      run: pip install robotframework>=4
+    - name: Combine logs
+      working-directory: work/
+      run: |
+        mkdir rebot_output
+        rebot -d rebot_output -o output.xml -N "${{ github.workflow }}" --nostatusrc */*.xml
+    - name: Store processed logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: combined-logs
+        path: work/rebot_output

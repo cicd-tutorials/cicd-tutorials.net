@@ -27,19 +27,15 @@ System.setProperty("hudson.model.DirectoryBrowserSupport.CSP","sandbox allow-scr
 Build the Docker containers with `docker build`:
 
 ```sh
-# Chromium
-docker build . -f chromium.Dockerfile --tag rf-screenshot-gc
-
-# Firefox
-docker build . -f firefox.Dockerfile --tag rf-screenshot-ff
+docker build . --tag rf-screenshot
 ```
 
 Execute the Robot Framework suites with `docker run`:
 
 ```sh
 # Chromium
-docker run --rm -v $(pwd)/out:/out rf-screenshot-gc -d /out -v URL:https://github.com/kangasta/jenkins-examples
+docker run --rm -v $(pwd)/out:/out -e BROWSER=chromium rf-screenshot -d /out -v URL:https://kangasta.github.io/cicd-examples/
 
 # Firefox
-docker run --rm -v $(pwd)/out:/out rf-screenshot-ff -d /out -v URL:https://github.com/kangasta/jenkins-examples
+docker run --rm -v $(pwd)/out:/out -e BROWSER=firefox rf-screenshot -d /out -v URL:https://kangasta.github.io/cicd-examples/
 ```

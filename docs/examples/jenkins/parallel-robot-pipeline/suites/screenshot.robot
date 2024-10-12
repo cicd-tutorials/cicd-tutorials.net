@@ -1,28 +1,24 @@
 *** Settings ***
 Library             OperatingSystem
-Library             SeleniumLibrary
+Library             Browser
 Suite Setup         Check URL and open browser
 Suite Teardown      Close browser
 
 *** Variables ***
-${BROWSER}          headlesschrome
-${BROWSER_OPTIONS}  ${EMPTY}
+${BROWSER}          chromium
 ${URL}              ${EMPTY}
-${WAIT_PAGE_LOAD}   5 seconds
 
 *** Tasks ***
 Capture Screenshot
     Skip if  not $URL  msg=Target URL not specified
-    Go to  ${URL}
-    Sleep  ${WAIT_PAGE_LOAD}
-    Capture Page Screenshot
+    New Page  ${URL}
+    Take Screenshot  EMBED
 
 *** Keywords ***
 Open browser defined by environment
-    ${browser_options}=  Get Environment Variable    BROWSER_OPTIONS    ${BROWSER_OPTIONS}
     ${browser}=  Get Environment Variable    BROWSER    ${BROWSER}
-    Open browser    browser=${browser}    options=${browser_options}
-    Set Screenshot Directory  ${OUTPUT DIR}${/}${browser}_screenshots
+    New Browser  ${browser}
+    New Context  viewport={'width': 1280, 'height': 720}
 
 Check URL and open browser
     Skip if  not $URL  msg=Target URL not specified

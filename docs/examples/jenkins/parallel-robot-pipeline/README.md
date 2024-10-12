@@ -10,11 +10,11 @@ In order to be able to run the pipeline we will need [Docker Pipeline](https://p
 
 ## Configure the pipeline
 
-First, create a new pipeline via [New Item](http://localhost:8080/view/all/newJob) button in the rigth side menu of the Jenkins dashboard. The name of the pipeline could be for example `Screenshots` and it should be an pipeline.
+First, create a new pipeline via _[New Item](http://localhost:8080/view/all/newJob)_ button in the rigth side menu of the Jenkins dashboard. The name of the pipeline could be for example `Screenshots` and it should be an pipeline.
 
-In the configure pipeline view, scroll to the bottom and under Pipeline sub-header select `Pipeline script from SCM`. SCM type should be `Git` and Repository URL the url of this repository: `https://github.com/kangasta/jenkins-examples.git`. Ensure that branch specifier includes `main` branch of the repository and modify the Script Path to be `parallel-robot-pipeline/Jenkinsfile`.
+In the configure pipeline view, scroll to the bottom and under Pipeline sub-header select `Pipeline script from SCM`. SCM type should be `Git` and Repository URL the url of this repository: `https://github.com/kangasta/cicd-examples.git`. Ensure that branch specifier includes `main` branch of the repository and modify the Script Path to be `docs/examples/jenkins/parallel-robot-pipeline/Jenkinsfile`.
 
-After you have created the pipeline, try to execute it by clicking Build Now. All Robot Framework tasks should be in Skipped state as we did not specify URL variable, see `.robot` file for details. In addition, after the first execution Jenkins should have updated the project configuration to contain parameters defined in the pipeline and we can now pass target URL to our automation tasks in Build with Parameters menu.
+After you have created the pipeline, try to execute it by clicking _Build Now_. All Robot Framework tasks should be in Skipped state as we did not specify URL variable, see `.robot` file for details. In addition, after the first execution Jenkins should have updated the project configuration to contain parameters defined in the pipeline and we can now pass target URL to our automation tasks in Build with Parameters menu.
 
 Finally, If the robot log cannot be loaded after task execution, see [this stackoverflow post](https://stackoverflow.com/questions/36607394/error-opening-robot-framework-log-failed) for solution. To summarize, run following command in Jenkins Script Console to modify Jenkins servers Content Security Policy (CSP):
 

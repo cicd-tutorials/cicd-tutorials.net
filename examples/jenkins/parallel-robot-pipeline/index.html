@@ -407,11 +407,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../dind-jenkins/" class="md-nav__link">
+      <a href="../jenkins-host-docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Jenkins with hosts Docker socket
+    Jenkins with access to hosts Docker engine
   </span>
   
 
@@ -666,7 +666,7 @@
 <h1 id="parallel-robot-framework-pipeline">Parallel Robot Framework pipeline</h1>
 <p>This directory provides an example of a Jenkins pipeline that executes Robot Framework automation tasks with docker agent in parallel stages as well as combines and stores the produced HTML/XML report files.</p>
 <h2 id="preparing-the-jenkins-instance">Preparing the Jenkins instance</h2>
-<p>The pipeline provided by this example can be added to any Jenkins instance you have administrator access and can run pipeline stages with docker agent. For example, Jenkins configuration from <a href="../dind-jenkins/">Docker-in-Docker</a> example can be used.</p>
+<p>The pipeline provided by this example can be added to any Jenkins instance you have administrator access and can run pipeline stages with docker agent. For example, Jenkins configuration from <a href="../jenkins-host-docker/">Jenkins with access to hosts Docker engine</a> example can be used.</p>
 <p>In order to be able to run the pipeline we will need <a href="https://plugins.jenkins.io/docker-workflow/">Docker Pipeline</a> and <a href="https://plugins.jenkins.io/robot/">Robot Framework</a> plugins. Install these plugins through <em>Available</em> tab in <a href="http://localhost:8080/pluginManager/available">Manage Jenkins &gt; Manage Plugins</a> and restart the Jenkins instance after these plugins have been installed. The restart can be done, for example, from the plugins page or by restarting the container with <code>docker compose down</code> and <code>docker compose up</code>.</p>
 <h2 id="configure-the-pipeline">Configure the pipeline</h2>
 <p>First, create a new pipeline via <em><a href="http://localhost:8080/view/all/newJob">New Item</a></em> button in the rigth side menu of the Jenkins dashboard. The name of the pipeline could be for example <code>Screenshots</code> and it should be an pipeline.</p>

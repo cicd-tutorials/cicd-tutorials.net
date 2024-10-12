@@ -407,11 +407,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../dind-jenkins/" class="md-nav__link">
+      <a href="../jenkins-host-docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Jenkins with hosts Docker socket
+    Jenkins with access to hosts Docker engine
   </span>
   
 
@@ -648,7 +648,7 @@
 <h1 id="build-status-pipelines-and-job-dsl">Build status pipelines and Job DSL</h1>
 <p>This example contains pipelines to produce builds with success, unstable, failed, aborted, and not-built statuses as well as Job DSL script to create a folder with projects that have these five different statuses.</p>
 <h2 id="preparing-the-jenkins-instance">Preparing the Jenkins instance</h2>
-<p>The pipeline provided by this example can be added to any Jenkins instance you have administrator access. For example, Jenkins configuration from <a href="../dind-jenkins/">Docker-in-Docker</a> example can be used.</p>
+<p>The pipeline provided by this example can be added to any Jenkins instance you have administrator access. For example, Jenkins configuration from <a href="../jenkins-host-docker/">Jenkins with access to hosts Docker engine</a> example can be used.</p>
 <p>In order to be able to run the seed project we will need <a href="https://plugins.jenkins.io/job-dsl/">Job DSL</a> plugin. Install the plugin through Available tab in <a href="http://localhost:8080/pluginManager/available">Manage Jenkins &gt; Manage Plugins</a>.</p>
 <h2 id="creating-and-running-the-seed-project">Creating and running the seed project</h2>
 <p>To run the job DSL script, create a new pipeline with following script as an inline pipeline script and run the created pipeline.</p>

@@ -8,7 +8,7 @@ You will need a running Kubernetes cluster, that supports services with `LoadBal
 
 ## Preparing the Jenkins instance
 
-The pipeline provided by this example can be added to any Jenkins instance you have administrator access and can run pipeline stages with docker agent. For example, Jenkins configuration from [Docker-in-Docker](../dind-jenkins/) example can be used.
+The pipeline provided by this example can be added to any Jenkins instance you have administrator access and can run pipeline stages with docker agent. For example, Jenkins configuration from [Jenkins with access to hosts Docker engine](../jenkins-host-docker/) example can be used.
 
 We will use secret file to configure credentials for managing the target Kubernetes cluster. To create the secret file credential, open _Global credentials_ from _Jenkins_ credentials store from [Manage Jenkins > Manage Credentials](http://localhost:8080/credentials/) and click _Add Credentials_ from the left side menu.
 

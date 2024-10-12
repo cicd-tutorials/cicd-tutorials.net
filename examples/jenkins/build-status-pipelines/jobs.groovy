@@ -1,3 +1,5 @@
+String d = "docs/examples/jenkins/build-status-pipelines"
+
 folder('Status') {
     description('Example pipelines to produce success, unstable, failed, aborted, and not-built statuses.')
 }
@@ -9,7 +11,7 @@ for (status in statuses) {
     pipelineJob(name) {
         definition {
             cps {
-                script(readFileFromWorkspace("build-status-pipelines/${status.toLowerCase()}.Jenkinsfile"))
+                script(readFileFromWorkspace("$d/${status.toLowerCase()}.Jenkinsfile"))
                 sandbox()
             }
         }
@@ -20,7 +22,7 @@ for (status in statuses) {
 pipelineJob('Status/Not built') {
     definition {
         cps {
-            script(readFileFromWorkspace("build-status-pipelines/success.Jenkinsfile"))
+            script(readFileFromWorkspace("$d/success.Jenkinsfile"))
             sandbox()
         }
     }

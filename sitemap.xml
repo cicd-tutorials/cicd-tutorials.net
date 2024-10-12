@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://kangasta.github.io/cicd-examples/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://kangasta.github.io/cicd-examples/examples/docker/docker-on-wsl/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/ansible-kubernetes/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/build-status-pipelines/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/dind-jenkins/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/parallel-robot-pipeline/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/sonarqube-jenkins/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
 </urlset>

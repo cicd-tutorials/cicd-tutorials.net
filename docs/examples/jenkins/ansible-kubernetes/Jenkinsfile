@@ -1,3 +1,5 @@
+String d = "docs/examples/jenkins/ansible-kubernetes"
+
 pipeline {
     agent any
     parameters {
@@ -7,22 +9,19 @@ pipeline {
         stage("deploy") {
             agent {
                 dockerfile {
-                    dir "ansible-kubernetes"
+                    dir "$d"
                     reuseNode true
                 }
             }
             environment {
                 K8S_AUTH_KUBECONFIG = credentials('kubeconfig')
+                KUBECONFIG = credentials('kubeconfig')
             }
             steps {
                 sh """
-                    ansible-playbook ansible-kubernetes/deploy-to-kubernetes.yml --extra-vars "animal=${params.ANIMAL}"
+                    ansible-playbook $d/deploy-to-kubernetes.yml --extra-vars "animal=${params.ANIMAL}"
+                    ./$d/wait-until-service-up.sh
                 """
-                // Do not use Groovy string interpolation for credential
-                sh '''
-                    export KUBECONFIG=$K8S_AUTH_KUBECONFIG
-                    ./ansible-kubernetes/wait-until-service-up.sh
-                '''
             }
         }
     }

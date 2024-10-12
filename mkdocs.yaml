@@ -13,7 +13,7 @@ nav:
 - Docker:
   - ./examples/docker/docker-on-wsl/README.md
 - Jenkins:
-  - ./examples/jenkins/dind-jenkins/README.md
+  - ./examples/jenkins/jenkins-host-docker/README.md
   - ./examples/jenkins/ansible-kubernetes/README.md
   - ./examples/jenkins/build-status-pipelines/README.md
   - ./examples/jenkins/parallel-robot-pipeline/README.md

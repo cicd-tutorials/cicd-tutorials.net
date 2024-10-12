@@ -4,7 +4,7 @@ This example contains pipelines to produce builds with success, unstable, failed
 
 ## Preparing the Jenkins instance
 
-The pipeline provided by this example can be added to any Jenkins instance you have administrator access. For example, Jenkins configuration from [Docker-in-Docker](../dind-jenkins/) example can be used.
+The pipeline provided by this example can be added to any Jenkins instance you have administrator access. For example, Jenkins configuration from [Jenkins with access to hosts Docker engine](../jenkins-host-docker/) example can be used.
 
 In order to be able to run the seed project we will need [Job DSL](https://plugins.jenkins.io/job-dsl/) plugin. Install the plugin through Available tab in [Manage Jenkins > Manage Plugins](http://localhost:8080/pluginManager/available).
 

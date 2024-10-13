@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitlab-runner
+  labels:
+    name: gitlab-runner
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dockerd-config
+  namespace: gitlab-runner
+data:
+  daemon.json: |
+    {
+      "registry-mirrors": [
+        "http://registry.pull-through-cache.svc.cluster.local"
+      ],
+      "insecure-registries" : ["registry.pull-through-cache.svc.cluster.local"]
+    }

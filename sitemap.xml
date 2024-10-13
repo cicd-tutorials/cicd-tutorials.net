@@ -13,6 +13,10 @@
          <lastmod>2024-10-13</lastmod>
     </url>
     <url>
+         <loc>https://kangasta.github.io/cicd-examples/examples/gitlab-ci/docker-hub-ratelimit/</loc>
+         <lastmod>2024-10-13</lastmod>
+    </url>
+    <url>
          <loc>https://kangasta.github.io/cicd-examples/examples/jenkins/ansible-kubernetes/</loc>
          <lastmod>2024-10-13</lastmod>
     </url>

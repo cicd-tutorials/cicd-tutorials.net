@@ -1,3 +1,7 @@
+---
+description: Tutorial on how to configure a Jenkins pipeline that creates pipelines with five different statuses into a new folder using Job DSL.
+---
+
 # Build status pipelines and Job DSL
 
 This example contains pipelines to produce builds with success, unstable, failed, aborted, and not-built statuses as well as Job DSL script to create a folder with projects that have these five different statuses.

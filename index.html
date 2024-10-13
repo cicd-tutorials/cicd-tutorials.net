@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cicd-examples" class="md-skip">
+        <a href="#cicd-pipeline-and-tooling-examples" class="md-skip">
           Skip to content
         </a>
       
@@ -347,6 +347,39 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-cicd-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are CI/CD pipelines?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What are CI/CD pipelines?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Delivery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#installing-docker" class="md-nav__link">
@@ -612,6 +645,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-are-cicd-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are CI/CD pipelines?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What are CI/CD pipelines?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Delivery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#installing-docker" class="md-nav__link">
     <span class="md-ellipsis">
       Installing Docker
@@ -651,11 +717,21 @@
   
 
 
-<h1 id="cicd-examples">CI/CD Examples</h1>
-<p>This website contains examples on how to develop CI/CD pipelines and how to configure development environment for working with CI/CD pipelines.</p>
+<h1 id="cicd-pipeline-and-tooling-examples">CI/CD Pipeline and Tooling Examples</h1>
+<p>This website contains examples on how to develop CI/CD pipelines and how to configure a development environment for working with CI/CD pipelines.</p>
+<h2 id="what-are-cicd-pipelines">What are CI/CD pipelines?</h2>
+<p>CI/CD refers to the combination of Continuous Integration (CI) and Continuous Delivery (CD) practices. Both of these practices aim to increase the frequency at which changes are released. The increase in release frequency is often enabled by automation pipelines.</p>
+<h3 id="continuous-integration">Continuous Integration</h3>
+<p>In Continuous Integration, code changes are merged from development or feature branches to the main branch as often as possible. This provides more frequent feedback to the developers and should lead into smaller individual changes that are easier to integrate into the main branch.</p>
+<p>Continuous Integration is often supported by CI pipeline that automatically validates the changes to be merged into the main branch. These automatic validation can include, for example, static code analysis and automated tests. The CI pipelines are usually automatically triggered by an event in a version control system. For example, a CI pipeline could be automatically triggered when a pull request is created or updated.</p>
+<p>In addition to automated validations done by the CI pipeline, continuous integration processes may include manual validations. For example, code review done by another developer might be required in order to be able to merge the change.</p>
+<h3 id="continuous-delivery">Continuous Delivery</h3>
+<p>In Continuous Delivery, code changes are continuously built and delivered to a release target. For example, a web application could be updated after each new change on the main branch. Similarly than with Continuous Integration, the goal is to get more frequent feedback on code changes. Delivering changes more frequently should lead into a better delivery routine and more well defined delivery process.</p>
+<p>Continuous Delivery is often implemented with a CD pipeline. The CD pipeline could, for example, build the main branch after a code change was merged in and deploy the build result into a test or staging environment. The CD pipeline might also have steps that wait for human approval before they are executed. For example, deployment to a production environment might require human approval.</p>
+<p>The CI and CD pipelines are often tightly integrated with each other. Delivery is usually done after validating the code change and more complex validation might require the code change to be delivered into a test environment.</p>
 <h2 id="installing-docker">Installing Docker</h2>
 <p>Many of the examples provided on this website require Docker and Docker Compose to be installed on your development environment.</p>
-<p>See <a href="https://docs.docker.com/get-docker/">Get Docker</a> for official installation instructions. If you use Docker a lot on Mac or Windows system, the recommended Docker Desktop is likely a good option for you. Note that, since January 2022, it has required paid subscription, if used for commercial development.</p>
+<p>See <a href="https://docs.docker.com/get-docker/">Get Docker</a> for official installation instructions. If you use Docker a lot on a Mac or Windows system, the recommended Docker Desktop is likely a good option for you. Note that, since January 2022, it has required paid subscription, if used for commercial development.</p>
 <p>Alternatively, Windows users can <a href="./docker/docker-on-wsl/">install Docker on top of WSL2</a>. For Mac users there are alternatives, such as <a href="https://github.com/abiosoft/colima">Colima</a>, available.</p>
 
 
@@ -679,7 +755,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 12, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 13, 2024</span>
   </span>
 
     

@@ -1,0 +1,24 @@
+default:
+  image: docker:cli
+  services:
+    - name: "docker:dind"
+      command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375
+
+stages:
+  - test
+
+test-caching:
+  stage: test
+  before_script:
+    - apk add curl jq
+  script:
+    - docker pull ubuntu:24.04
+    - ./scripts/check-docker-hub-ratelimit.sh 1st.txt
+    - docker rmi ubuntu:24.04
+    - docker pull ubuntu:24.04
+    - ./scripts/check-docker-hub-ratelimit.sh 2nd.txt
+    - diff 1st.txt 2nd.txt

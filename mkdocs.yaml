@@ -15,6 +15,8 @@ nav:
   - Home: README.md
   - Docker:
       - ./examples/docker/docker-on-wsl/README.md
+  - GitLab CI:
+      - ./examples/gitlab-ci/docker-hub-ratelimit/README.md
   - Jenkins:
       - ./examples/jenkins/jenkins-host-docker/README.md
       - ./examples/jenkins/ansible-kubernetes/README.md

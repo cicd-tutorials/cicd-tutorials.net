@@ -1,3 +1,7 @@
+---
+description: Tutorial on how to install and configure Docker and Docker Compose on Ubuntu running inside Windows Subsystem for Linux.
+---
+
 # Install Docker on Windows Subsystem for Linux
 
 If you do not already have Windows Subsystem for Linux (WSL) installed, see [Install Linux on Windows with WSL](https://docs.microsoft.com/en-us/windows/wsl/install) for instructions.

@@ -12,39 +12,40 @@ docs_dir: docs/
 edit_uri: edit/main/docs/
 
 nav:
-- Home: README.md
-- Docker:
-  - ./examples/docker/docker-on-wsl/README.md
-- Jenkins:
-  - ./examples/jenkins/jenkins-host-docker/README.md
-  - ./examples/jenkins/ansible-kubernetes/README.md
-  - ./examples/jenkins/build-status-pipelines/README.md
-  - ./examples/jenkins/parallel-robot-pipeline/README.md
-  - ./examples/jenkins/sonarqube-jenkins/README.md
+  - Home: README.md
+  - Docker:
+      - ./examples/docker/docker-on-wsl/README.md
+  - Jenkins:
+      - ./examples/jenkins/jenkins-host-docker/README.md
+      - ./examples/jenkins/ansible-kubernetes/README.md
+      - ./examples/jenkins/build-status-pipelines/README.md
+      - ./examples/jenkins/parallel-robot-pipeline/README.md
+      - ./examples/jenkins/sonarqube-jenkins/README.md
 not_in_nav: |
   assets/README.md
 
 theme:
   name: material
   custom_dir: overrides
+  logo: assets/logo.svg
   favicon: assets/favicon.png
   palette:
-  - media: "(prefers-color-scheme: light)"
-    scheme: default
-    primary: blue grey
-    accent: deep orange
-    toggle:
-      icon: material/weather-sunny
-      name: Switch to dark mode
-  - media: "(prefers-color-scheme: dark)"
-    scheme: slate
-    primary: blue grey
-    accent: deep orange
-    toggle:
-      icon: material/weather-night
-      name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   font:
-    text: Source Sans Pro
+    text: Source Sans 3
     code: Source Code Pro
   language: en
   features:
@@ -54,12 +55,13 @@ theme:
     - navigation.sections
 
 plugins:
-  - search
   - git-committers:
       repository: kangasta/cicd-examples
       branch: main
   - git-revision-date-localized:
       enable_creation_date: true
+  - search
+  - social
 
 markdown_extensions:
   - admonition

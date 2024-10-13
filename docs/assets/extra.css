@@ -1,5 +1,6 @@
 .icon {
     background: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
     display: inline-block;
 }
 

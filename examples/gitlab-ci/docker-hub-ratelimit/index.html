@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Tutorial on how to tests if GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.">
+        <meta name="description" content="Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.">
       
       
       
@@ -24,7 +24,7 @@
     
     
       
-        <title>Docker Hub ratelimit - CI/CD Examples</title>
+        <title>Docker-in-Docker service and Docker Hub ratelimit - CI/CD Examples</title>
       
     
     
@@ -61,9 +61,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Docker Hub ratelimit - CI/CD Examples" >
+        <meta  property="og:title"  content="Docker-in-Docker service and Docker Hub ratelimit - CI/CD Examples" >
       
-        <meta  property="og:description"  content="Tutorial on how to tests if GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner." >
+        <meta  property="og:description"  content="Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner." >
       
         <meta  property="og:image"  content="https://kangasta.github.io/cicd-examples/assets/images/social/examples/gitlab-ci/docker-hub-ratelimit/README.png" >
       
@@ -77,9 +77,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Docker Hub ratelimit - CI/CD Examples" >
+        <meta  name="twitter:title"  content="Docker-in-Docker service and Docker Hub ratelimit - CI/CD Examples" >
       
-        <meta  name="twitter:description"  content="Tutorial on how to tests if GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner." >
+        <meta  name="twitter:description"  content="Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner." >
       
         <meta  name="twitter:image"  content="https://kangasta.github.io/cicd-examples/assets/images/social/examples/gitlab-ci/docker-hub-ratelimit/README.png" >
       
@@ -104,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-hub-ratelimit" class="md-skip">
+        <a href="#docker-in-docker-service-and-docker-hub-ratelimit" class="md-skip">
           Skip to content
         </a>
       
@@ -151,7 +151,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker Hub ratelimit
+              Docker-in-Docker service and Docker Hub ratelimit
             
           </span>
         </div>
@@ -448,7 +448,7 @@
           
   
   <span class="md-ellipsis">
-    Docker Hub ratelimit
+    Docker-in-Docker service and Docker Hub ratelimit
   </span>
   
 
@@ -459,7 +459,7 @@
         
   
   <span class="md-ellipsis">
-    Docker Hub ratelimit
+    Docker-in-Docker service and Docker Hub ratelimit
   </span>
   
 
@@ -741,7 +741,7 @@
   
 
 
-<h1 id="docker-hub-ratelimit">Docker Hub ratelimit</h1>
+<h1 id="docker-in-docker-service-and-docker-hub-ratelimit">Docker-in-Docker service and Docker Hub ratelimit</h1>
 <p>The recommended way of running Docker commands in a GitLab CI Kubernets runner is to use a service to run Docker-in-Docker container (<code>docker:dind</code>). By default the <code>docker:dind</code> container pulls container images from Docker Hub without caching. This can cause problems as pulls from Docker Hub are rate-limited.</p>
 <p>This example tests how <code>docker pull ubuntu:24.04</code> commands consume Docker Hub ratelimit and provides example on how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.</p>
 <h2 id="how-to-check-if-docker-pull-commands-are-cached">How to check if <code>docker pull</code> commands are cached</h2>
@@ -836,7 +836,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 13, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 14, 2024</span>
   </span>
 
     

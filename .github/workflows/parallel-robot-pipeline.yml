@@ -4,13 +4,13 @@ on:
     branches:
     - main
     paths:
-    - docs/examples/jenkins/parallel-robot-pipeline/**
+    - docs/tutorials/jenkins/parallel-robot-pipeline/**
     - .github/workflows/parallel-robot-pipeline.yml
   pull_request:
     branches:
     - main
     paths:
-    - docs/examples/jenkins/parallel-robot-pipeline/**
+    - docs/tutorials/jenkins/parallel-robot-pipeline/**
     - .github/workflows/parallel-robot-pipeline.yml
 
 jobs:
@@ -21,13 +21,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Build container image
-      working-directory: docs/examples/jenkins/parallel-robot-pipeline/
+      working-directory: docs/tutorials/jenkins/parallel-robot-pipeline/
       run: |
         docker build . --tag rf-screenshot
     - name: Test container image
       run: |
         for browser in chromium firefox; do
-          docker run --rm -v $(pwd)/robot_output:/out -e BROWSER=$browser rf-screenshot -d /out -l none -r none -o $browser.xml -N $browser -v URL:https://kangasta.github.io/cicd-examples/
+          docker run --rm -v $(pwd)/robot_output:/out -e BROWSER=$browser rf-screenshot -d /out -l none -r none -o $browser.xml -N $browser -v URL:https://cicd-tutorials.github.io/cicd-tutorials.net/
         done
     - name: Store logs
       if: always()
@@ -45,13 +45,13 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Push container image to GitHub Container Registry
       if: github.ref == 'refs/heads/main'
-      working-directory: docs/examples/jenkins/parallel-robot-pipeline/
+      working-directory: docs/tutorials/jenkins/parallel-robot-pipeline/
       run: |
         docker build . --target base -t base
 
         for tag in ${{ github.run_number }} latest; do
-          docker tag base ghcr.io/kangasta/robot-browser:$tag
-          docker push ghcr.io/kangasta/robot-browser:$tag
+          docker tag base ghcr.io/cicd-tutorials/robot-browser:$tag
+          docker push ghcr.io/cicd-tutorials/robot-browser:$tag
         done
   process-logs:
     name: Process logs

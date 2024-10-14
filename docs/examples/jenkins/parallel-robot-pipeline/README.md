@@ -18,7 +18,19 @@ First, create a new pipeline via _[New Item](http://localhost:8080/view/all/newJ
 
 In the configure pipeline view, scroll to the bottom and under Pipeline sub-header select `Pipeline script from SCM`. SCM type should be `Git` and Repository URL the url of this repository: `https://github.com/kangasta/cicd-examples.git`. Ensure that branch specifier includes `main` branch of the repository and modify the Script Path to be `docs/examples/jenkins/parallel-robot-pipeline/Jenkinsfile`.
 
-After you have created the pipeline, try to execute it by clicking _Build Now_. All Robot Framework tasks should be in Skipped state as we did not specify URL variable, see `.robot` file for details. In addition, after the first execution Jenkins should have updated the project configuration to contain parameters defined in the pipeline and we can now pass target URL to our automation tasks in Build with Parameters menu.
+The pipeline executes the same Robot Framework suite twice: once with Firefox and once with Chromium. This is done in parallel. After the test suites have finished, the log files are combined in the next stage.
+
+```groovy title="Jenkinsfile"
+---8<--- "docs/examples/jenkins/parallel-robot-pipeline/Jenkinsfile"
+```
+
+After you have created the pipeline, try to execute it by clicking _Build Now_. All Robot Framework tasks should be in Skipped state as we did not specify an URL variable. In addition, after the first execution Jenkins should have updated the project configuration to contain parameters defined in the pipeline and we can now pass target URL to our automation tasks in _Build with Parameters_ menu.
+
+The Robot Framework suite defined in [suites/screenshot.robot](./suites/screenshot.robot) uses Browser library to take a screenshot of the page available in the URL defined with the URL variable.
+
+```robot title="suites/screenshot.robot"
+---8<--- "docs/examples/jenkins/parallel-robot-pipeline/suites/screenshot.robot"
+```
 
 Finally, If the robot log cannot be loaded after task execution, see [this stackoverflow post](https://stackoverflow.com/questions/36607394/error-opening-robot-framework-log-failed) for solution. To summarize, run following command in Jenkins Script Console to modify Jenkins servers Content Security Policy (CSP):
 
@@ -26,7 +38,21 @@ Finally, If the robot log cannot be loaded after task execution, see [this stack
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP","sandbox allow-scripts; default-src 'none'; img-src 'self' data: ; style-src 'self' 'unsafe-inline' data: ; script-src 'self' 'unsafe-inline' 'unsafe-eval' ;")
 ```
 
-## Running the example scripts locally
+## Building and running the Docker container
+
+The Jenkins pipeline listed above uses container image from Github Container Registry to run the pipelines. The container image is created using [Dockerfile](./Dockerfile) defined by this tutorial.
+
+```Dockerfile title="Dockerfile"
+---8<--- "docs/examples/jenkins/parallel-robot-pipeline/Dockerfile"
+```
+
+The Dockerfile is based on Playwright image that contains the Browser binaries and other Playwright related dependencies of the Browser library. In addition, the Dockerfile installs Python and Python libraries defined in [requirements.txt](./requirements.txt) to the container image.
+
+```txt title="requirements.txt"
+---8<--- "docs/examples/jenkins/parallel-robot-pipeline/requirements.txt"
+```
+
+## Running the tasks locally
 
 Build the Docker containers with `docker build`:
 

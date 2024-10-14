@@ -29,7 +29,23 @@ First, create a new pipeline via [New Item](http://localhost:8080/view/all/newJo
 
 In the configure pipeline view, scroll to the bottom and under Pipeline sub-header select `Pipeline script from SCM`. SCM type should be `Git` and Repository URL the url of this repository: `https://github.com/kangasta/cicd-examples.git`. Ensure that branch specifier includes `main` branch of the repository and modify the Script Path to be `docs/examples/jenkins/ansible-kubernetes/Jenkinsfile`.
 
+The pipeline deploys an example application to a Kubernetes cluster using Ansible playbook. The playbook selects a container image tag based on Jenkins build parameter.
+
+```groovy title="Jenkinsfile"
+---8<--- "docs/examples/jenkins/ansible-kubernetes/Jenkinsfile"
+```
+
 After you have created the pipeline, try to execute it by clicking _Build Now_. The pipeline should have deployed the example application into the Kubernetes cluster with the default image tag (`cow`) defined in the [deploy-to-kubernetes.yml](./deploy-to-kubernetes.yml) Ansible playbook.
+
+```yaml title="deploy-to-kubernetes.yml"
+---8<--- "docs/examples/jenkins/ansible-kubernetes/deploy-to-kubernetes.yml"
+```
+
+After the Ansible playbook has been executed, the pipeline runs [wait-until-service-up.sh](./wait-until-service-up.sh) script. The script waits until the load-balancer created by the Kubernetes service has reached running state and parses the URL where the example application is running.
+
+```sh
+---8<--- "docs/examples/jenkins/ansible-kubernetes/wait-until-service-up.sh"
+```
 
 You can find the URL of the created load-balancer from the console output of the build. Open the application with your browser or user curl to see the application response.
 

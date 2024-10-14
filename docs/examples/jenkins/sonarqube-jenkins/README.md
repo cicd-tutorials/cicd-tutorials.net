@@ -2,7 +2,7 @@
 description: Tutorial on how to push code scanning results from Jenkins pipeline to SonarQube and how to display SonarQube data in Jenkins.
 ---
 
-# Jenkins and SonarQube
+# Integrating Jenkins and SonarQube
 
 This example uses the same Jenkins configuration as the [Jenkins with access to hosts Docker engine](../jenkins-host-docker/) example. If you did any configuration in [jenkins-host-docker](../jenkins-host-docker/) directory, sync the project names with `-p`/`--project-name` option or `COMPOSE_PROJECT_NAME` environment variable to use the same volumes. For example:
 
@@ -15,6 +15,12 @@ docker compose -p jenkins up -d
 # With COMPOSE_PROJECT_NAME environment variable:
 export COMPOSE_PROJECT_NAME=jenkins
 docker compose up -d
+```
+
+In additions to `jenkins` service, we now define a `sonarqube` service as well in the [docker-compose.yml](./docker-compose.yml):
+
+```yaml title="docker-compose.yml"
+---8<--- "docs/examples/jenkins/sonarqube-jenkins/docker-compose.yml"
 ```
 
 ## Gettings started with SonarQube
@@ -43,33 +49,8 @@ First, install SonarQube Scanner plugin to your Jenkins instance through [Manage
 
 After the SonarQube server is configured to Jenkins, sonar-scanner can be executed in a stage that uses the same [sonarsource/sonar-scanner-cli](https://hub.docker.com/r/sonarsource/sonar-scanner-cli) Docker image that was used in the previous step as well. This can be done with a stage level Docker agent:
 
-```Groovy
-stage('Analyze') {
-  agent {
-    docker {
-      image 'sonarsource/sonar-scanner-cli'
-      // In order to be able to use http://sonarqube:9000 we need to be in the
-      // same network as Jenkins and SonarQube are in.
-      args '--net jenkins_default'
-      // To guarantee that the workspace contains the sources pulled in previous
-      // stage, we need to use the pipeline level workspace.
-      reuseNode true
-    }
-  }
-  steps {
-    // The parameter must match the name you gave for the SonarQube server when
-    // configuring it.
-    withSonarQubeEnv('Sonar') {
-      // Here, job name is used as the project key and current workspace as the
-      // sources location.
-      sh """
-        sonar-scanner \
-          -D'sonar.projectKey=${JOB_NAME}'\
-          -D'sonar.sources=${WORKSPACE}'
-      """
-    }
-  }
-}
+```Groovy title="Jenkinsfile"
+---8<-- "docs/examples/jenkins/sonarqube-jenkins/Jenkinsfile"
 ```
 
 See [Jenkinsfile](./Jenkinsfile) for a example of a complete pipeline. If you try to execute this example pipeline replace `${GIT_URL}` with the URL to your git repository of choice.

@@ -1,8 +1,8 @@
 ---
-description: Tutorial on how to tests if GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.
+description: Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.
 ---
 
-# Docker Hub ratelimit
+# Docker-in-Docker service and Docker Hub ratelimit
 
 The recommended way of running Docker commands in a GitLab CI Kubernets runner is to use a service to run Docker-in-Docker container (`docker:dind`). By default the `docker:dind` container pulls container images from Docker Hub without caching. This can cause problems as pulls from Docker Hub are rate-limited.
 

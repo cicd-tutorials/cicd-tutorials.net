@@ -24,3 +24,43 @@ node {
 ```
 
 The execution will likely fail with `ERROR: script not yet approved for use` message. To enable this script, navigate to [Manage Jenkins > In-process Script Approval](http://localhost:8080/scriptApproval/), inspect the script, and click _Approve_. Then try to run the created seed project again. It should now succeed and list the created resources.
+
+The scripted pipeline listed above executes [jobs.groovy](./jobs.groovy) script. This script creates five new pipelines and executes four of those.
+
+```groovy title="jobs.groovy"
+---8<--- "docs/examples/jenkins/build-status-pipelines/jobs.groovy"
+```
+
+The four different pipeline scripts used to create the jobs are listed below. The final job, `Status/Not built`, uses the same script as `Status/Success`, but the build is not executed.
+
+=== "Aborted"
+
+    Defines a pipeline that has a three minute timeout and build step that takes more than three minutes.
+
+    ```groovy title="aborted.Jenkinsfile"
+    ---8<--- "docs/examples/jenkins/build-status-pipelines/aborted.Jenkinsfile"
+    ```
+
+=== "Failed"
+
+    Defines a pipeline with single `sh` step that produces a non-zero exit code.
+
+    ```groovy title="failed.Jenkinsfile"
+    ---8<--- "docs/examples/jenkins/build-status-pipelines/failed.Jenkinsfile"
+    ```
+
+=== "Success"
+
+    Defines a pipeline with single succeeding `sh` step.
+
+    ```groovy title="success.Jenkinsfile"
+    ---8<--- "docs/examples/jenkins/build-status-pipelines/success.Jenkinsfile"
+    ```
+
+=== "Unstable"
+
+    Defines a pipeline with single `unstable` step.
+
+    ```groovy title="unstable.Jenkinsfile"
+    ---8<--- "docs/examples/jenkins/build-status-pipelines/unstable.Jenkinsfile"
+    ```

@@ -64,8 +64,8 @@ Execute the Robot Framework suites with `docker run`:
 
 ```sh
 # Chromium
-docker run --rm -v $(pwd)/out:/out -e BROWSER=chromium rf-screenshot -d /out -v URL:https://cicd-tutorials.github.io/cicd-tutorials.net/
+docker run --rm -v $(pwd)/out:/out -e BROWSER=chromium rf-screenshot -d /out -v URL:https://cicd-tutorials.net/
 
 # Firefox
-docker run --rm -v $(pwd)/out:/out -e BROWSER=firefox rf-screenshot -d /out -v URL:https://cicd-tutorials.github.io/cicd-tutorials.net/
+docker run --rm -v $(pwd)/out:/out -e BROWSER=firefox rf-screenshot -d /out -v URL:https://cicd-tutorials.net/
 ```

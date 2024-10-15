@@ -1,4 +1,4 @@
-String d = "docs/examples/jenkins/parallel-robot-pipeline"
+String d = "docs/tutorials/jenkins/parallel-robot-pipeline"
 
 pipeline {
     agent any
@@ -13,7 +13,7 @@ pipeline {
             parallel {
                 stage('Chromium') {
                     agent { docker {
-                        image 'ghcr.io/kangasta/robot-browser:latest'
+                        image 'ghcr.io/cicd-tutorials/robot-browser:latest'
                         args '--entrypoint=""'
                         reuseNode true
                     } }
@@ -25,7 +25,7 @@ pipeline {
                 }
                 stage('Firefox') {
                     agent { docker {
-                        image 'ghcr.io/kangasta/robot-browser:latest'
+                        image 'ghcr.io/cicd-tutorials/robot-browser:latest'
                         args '--entrypoint=""'
                         reuseNode true
                     } }
@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Process logs') {
             agent { docker {
-                image 'ghcr.io/kangasta/robot-browser:latest'
+                image 'ghcr.io/cicd-tutorials/robot-browser:latest'
                 args '--entrypoint=""'
                 reuseNode true
             } }

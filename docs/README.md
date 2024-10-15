@@ -1,6 +1,6 @@
-# CI/CD Pipeline and Tooling Examples
+# CI/CD Pipeline and Tooling Tutorials
 
-This website contains examples on how to develop CI/CD pipelines and how to configure a development environment for working with CI/CD pipelines.
+This website contains tutorials on how to develop CI/CD pipelines and how to configure a development environment for working with CI/CD pipelines.
 
 ## What are CI/CD pipelines?
 
@@ -24,8 +24,8 @@ The CI and CD pipelines are often tightly integrated with each other. Delivery i
 
 ## Installing Docker
 
-Many of the examples provided on this website require Docker and Docker Compose to be installed on your development environment.
+Many of the tutorials provided on this website require Docker and Docker Compose to be installed on your development environment.
 
 See [Get Docker](https://docs.docker.com/get-docker/) for official installation instructions. If you use Docker a lot on a Mac or Windows system, the recommended Docker Desktop is likely a good option for you. Note that, since January 2022, it has required paid subscription, if used for commercial development.
 
-Alternatively, Windows users can [install Docker on top of WSL2](./docker/docker-on-wsl/). For Mac users there are alternatives, such as [Colima](https://github.com/abiosoft/colima), available.
+Alternatively, Windows users can [install Docker on top of WSL2](./tutorials/docker/docker-on-wsl/). For Mac users there are alternatives, such as [Colima](https://github.com/abiosoft/colima), available.

@@ -1,4 +1,4 @@
-String d = "docs/examples/jenkins/ansible-kubernetes"
+String d = "docs/tutorials/jenkins/ansible-kubernetes"
 
 pipeline {
     agent any

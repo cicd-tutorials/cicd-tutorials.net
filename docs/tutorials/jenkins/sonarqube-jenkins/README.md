@@ -4,7 +4,7 @@ description: Tutorial on how to push code scanning results from Jenkins pipeline
 
 # Integrating Jenkins and SonarQube
 
-This example uses the same Jenkins configuration as the [Jenkins with access to hosts Docker engine](../jenkins-host-docker/) example. If you did any configuration in [jenkins-host-docker](../jenkins-host-docker/) directory, sync the project names with `-p`/`--project-name` option or `COMPOSE_PROJECT_NAME` environment variable to use the same volumes. For example:
+This tutorial uses the same Jenkins configuration as the [Jenkins with access to hosts Docker engine](../jenkins-host-docker/) tutorial. If you did any configuration in [jenkins-host-docker](../jenkins-host-docker/) directory, sync the project names with `-p`/`--project-name` option or `COMPOSE_PROJECT_NAME` environment variable to use the same volumes. For example:
 
 ```sh
 # Replace jenkins with jenkins-host-docker, if you used default project name in jenkins-host-docker directory.
@@ -20,7 +20,7 @@ docker compose up -d
 In additions to `jenkins` service, we now define a `sonarqube` service as well in the [docker-compose.yml](./docker-compose.yml):
 
 ```yaml title="docker-compose.yml"
----8<--- "docs/examples/jenkins/sonarqube-jenkins/docker-compose.yml"
+---8<--- "docs/tutorials/jenkins/sonarqube-jenkins/docker-compose.yml"
 ```
 
 ## Gettings started with SonarQube
@@ -50,7 +50,7 @@ First, install SonarQube Scanner plugin to your Jenkins instance through [Manage
 After the SonarQube server is configured to Jenkins, sonar-scanner can be executed in a stage that uses the same [sonarsource/sonar-scanner-cli](https://hub.docker.com/r/sonarsource/sonar-scanner-cli) Docker image that was used in the previous step as well. This can be done with a stage level Docker agent:
 
 ```Groovy title="Jenkinsfile"
----8<-- "docs/examples/jenkins/sonarqube-jenkins/Jenkinsfile"
+---8<-- "docs/tutorials/jenkins/sonarqube-jenkins/Jenkinsfile"
 ```
 
 See [Jenkinsfile](./Jenkinsfile) for a example of a complete pipeline. If you try to execute this example pipeline replace `${GIT_URL}` with the URL to your git repository of choice.

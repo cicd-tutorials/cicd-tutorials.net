@@ -1,9 +1,9 @@
-site_name: CI/CD Examples
-site_description: Examples on how to develop CI/CD pipelines and how to configure development environment for working with CI/CD pipelines.
-site_url: https://kangasta.github.io/cicd-examples/
-repo_name: kangasta/cicd-examples
-repo_url: https://github.com/kangasta/cicd-examples
-copyright: CI/CD Examples is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:18px!important;margin-left:9px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt=""><img style="height:18px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt=""><img style="height:18px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt=""></a>
+site_name: CI/CD Tutorials
+site_description: Tutorials on how to develop CI/CD pipelines and how to configure development environment for working with CI/CD pipelines.
+site_url: https://cicd-tutorials.github.io/cicd-tutorials.net/
+repo_name: cicd-tutorials/cicd-tutorials.net
+repo_url: https://github.com/cicd-tutorials/cicd-tutorials.net
+copyright: CI/CD Tutorials is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:18px!important;margin-left:9px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt=""><img style="height:18px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt=""><img style="height:18px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt=""></a>
 
 extra_css:
   - assets/extra.css
@@ -14,15 +14,15 @@ edit_uri: edit/main/docs/
 nav:
   - Home: README.md
   - Docker:
-      - ./examples/docker/docker-on-wsl/README.md
+      - ./tutorials/docker/docker-on-wsl/README.md
   - GitLab CI:
-      - ./examples/gitlab-ci/docker-hub-ratelimit/README.md
+      - ./tutorials/gitlab-ci/docker-hub-ratelimit/README.md
   - Jenkins:
-      - ./examples/jenkins/jenkins-host-docker/README.md
-      - ./examples/jenkins/ansible-kubernetes/README.md
-      - ./examples/jenkins/build-status-pipelines/README.md
-      - ./examples/jenkins/parallel-robot-pipeline/README.md
-      - ./examples/jenkins/sonarqube-jenkins/README.md
+      - ./tutorials/jenkins/jenkins-host-docker/README.md
+      - ./tutorials/jenkins/ansible-kubernetes/README.md
+      - ./tutorials/jenkins/build-status-pipelines/README.md
+      - ./tutorials/jenkins/parallel-robot-pipeline/README.md
+      - ./tutorials/jenkins/sonarqube-jenkins/README.md
 not_in_nav: |
   assets/README.md
 
@@ -58,7 +58,7 @@ theme:
 
 plugins:
   - git-committers:
-      repository: kangasta/cicd-examples
+      repository: cicd-tutorials/cicd-tutorials.net
       branch: main
   - git-revision-date-localized:
       enable_creation_date: true

@@ -27,7 +27,7 @@ jobs:
     - name: Test container image
       run: |
         for browser in chromium firefox; do
-          docker run --rm -v $(pwd)/robot_output:/out -e BROWSER=$browser rf-screenshot -d /out -l none -r none -o $browser.xml -N $browser -v URL:https://cicd-tutorials.github.io/cicd-tutorials.net/
+          docker run --rm -v $(pwd)/robot_output:/out -e BROWSER=$browser rf-screenshot -d /out -l none -r none -o $browser.xml -N $browser -v URL:https://cicd-tutorials.net/
         done
     - name: Store logs
       if: always()

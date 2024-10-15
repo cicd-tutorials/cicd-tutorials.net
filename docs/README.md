@@ -1,3 +1,7 @@
+---
+title: CI/CD Pipeline and Tooling Tutorials
+---
+
 # CI/CD Pipeline and Tooling Tutorials
 
 This website contains tutorials on how to develop CI/CD pipelines and how to configure a development environment for working with CI/CD pipelines.

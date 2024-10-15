@@ -25,7 +25,7 @@
                 app: animals
             spec:
               containers:
-              - image: ghcr.io/kangasta/animals:{{ animal }}
+              - image: ghcr.io/cicd-tutorials/animals:{{ animal }}
                 name: animals
   - name: Expose the deployment
     kubernetes.core.k8s:

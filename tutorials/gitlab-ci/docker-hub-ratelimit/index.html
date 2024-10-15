@@ -6,28 +6,32 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Tutorials on how to develop CI/CD pipelines and how to configure development environment for working with CI/CD pipelines.">
+        <meta name="description" content="Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.">
       
       
       
-        <link rel="canonical" href="https://cicd-tutorials.github.io/cicd-tutorials.net/assets/">
+        <link rel="canonical" href="https://cicd-tutorials.github.io/cicd-tutorials.net/tutorials/gitlab-ci/docker-hub-ratelimit/">
       
       
+        <link rel="prev" href="../../docker/docker-on-wsl/">
       
       
-      <link rel="icon" href="favicon.png">
+        <link rel="next" href="../../jenkins/jenkins-host-docker/">
+      
+      
+      <link rel="icon" href="../../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
-        <title>Assets - CI/CD Tutorials</title>
+        <title>Docker-in-Docker service and Docker Hub ratelimit - CI/CD Tutorials</title>
       
     
     
-      <link rel="stylesheet" href="stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
-        <link rel="stylesheet" href="stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="extra.css">
+      <link rel="stylesheet" href="../../../assets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -57,11 +61,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Assets - CI/CD Tutorials" >
+        <meta  property="og:title"  content="Docker-in-Docker service and Docker Hub ratelimit - CI/CD Tutorials" >
       
-        <meta  property="og:description"  content="Tutorials on how to develop CI/CD pipelines and how to configure development environment for working with CI/CD pipelines." >
+        <meta  property="og:description"  content="Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner." >
       
-        <meta  property="og:image"  content="https://cicd-tutorials.github.io/cicd-tutorials.net/assets/images/social/assets/README.png" >
+        <meta  property="og:image"  content="https://cicd-tutorials.github.io/cicd-tutorials.net/assets/images/social/tutorials/gitlab-ci/docker-hub-ratelimit/README.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -69,15 +73,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://cicd-tutorials.github.io/cicd-tutorials.net/assets/" >
+        <meta  property="og:url"  content="https://cicd-tutorials.github.io/cicd-tutorials.net/tutorials/gitlab-ci/docker-hub-ratelimit/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Assets - CI/CD Tutorials" >
+        <meta  name="twitter:title"  content="Docker-in-Docker service and Docker Hub ratelimit - CI/CD Tutorials" >
       
-        <meta  name="twitter:description"  content="Tutorials on how to develop CI/CD pipelines and how to configure development environment for working with CI/CD pipelines." >
+        <meta  name="twitter:description"  content="Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner." >
       
-        <meta  name="twitter:image"  content="https://cicd-tutorials.github.io/cicd-tutorials.net/assets/images/social/assets/README.png" >
+        <meta  name="twitter:image"  content="https://cicd-tutorials.github.io/cicd-tutorials.net/assets/images/social/tutorials/gitlab-ci/docker-hub-ratelimit/README.png" >
       
     
     
@@ -100,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#assets" class="md-skip">
+        <a href="#docker-in-docker-service-and-docker-hub-ratelimit" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +120,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="CI/CD Tutorials" class="md-header__button md-logo" aria-label="CI/CD Tutorials" data-md-component="logo">
+    <a href="../../.." title="CI/CD Tutorials" class="md-header__button md-logo" aria-label="CI/CD Tutorials" data-md-component="logo">
       <svg
   width="32"
   height="32"
@@ -147,7 +151,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Assets
+              Docker-in-Docker service and Docker Hub ratelimit
             
           </span>
         </div>
@@ -260,7 +264,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CI/CD Tutorials" class="md-nav__button md-logo" aria-label="CI/CD Tutorials" data-md-component="logo">
+    <a href="../../.." title="CI/CD Tutorials" class="md-nav__button md-logo" aria-label="CI/CD Tutorials" data-md-component="logo">
       <svg
   width="32"
   height="32"
@@ -301,7 +305,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -361,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorials/docker/docker-on-wsl/" class="md-nav__link">
+      <a href="../../docker/docker-on-wsl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -386,8 +390,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -397,11 +403,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -415,7 +421,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             GitLab CI
@@ -426,10 +432,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../tutorials/gitlab-ci/docker-hub-ratelimit/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Docker-in-Docker service and Docker Hub ratelimit
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -438,6 +464,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-check-if-docker-pull-commands-are-cached" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to check if docker pull commands are cached
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-setup-pull-through-cache-to-kubernetes-runner" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to setup pull-through cache to Kubernetes runner
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -497,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorials/jenkins/jenkins-host-docker/" class="md-nav__link">
+      <a href="../../jenkins/jenkins-host-docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -518,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorials/jenkins/ansible-kubernetes/" class="md-nav__link">
+      <a href="../../jenkins/ansible-kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -539,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorials/jenkins/build-status-pipelines/" class="md-nav__link">
+      <a href="../../jenkins/build-status-pipelines/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -560,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorials/jenkins/parallel-robot-pipeline/" class="md-nav__link">
+      <a href="../../jenkins/parallel-robot-pipeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -581,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tutorials/jenkins/sonarqube-jenkins/" class="md-nav__link">
+      <a href="../../jenkins/sonarqube-jenkins/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -629,35 +693,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#icon" class="md-nav__link">
+  <a href="#how-to-check-if-docker-pull-commands-are-cached" class="md-nav__link">
     <span class="md-ellipsis">
-      Icon
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Icon">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#48px" class="md-nav__link">
-    <span class="md-ellipsis">
-      48px
+      How to check if docker pull commands are cached
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#512px" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#how-to-setup-pull-through-cache-to-kubernetes-runner" class="md-nav__link">
     <span class="md-ellipsis">
-      512px
+      How to setup pull-through cache to Kubernetes runner
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -676,7 +725,7 @@
                   
 
   
-    <a href="https://github.com/cicd-tutorials/cicd-tutorials.net/edit/main/docs/assets/README.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/cicd-tutorials/cicd-tutorials.net/edit/main/docs/tutorials/gitlab-ci/docker-hub-ratelimit/README.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -685,58 +734,85 @@
     
       
     
-    <a href="https://github.com/cicd-tutorials/cicd-tutorials.net/raw/main/docs/assets/README.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/cicd-tutorials/cicd-tutorials.net/raw/main/docs/tutorials/gitlab-ci/docker-hub-ratelimit/README.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="assets">Assets</h1>
-<h2 id="icon">Icon</h2>
-<h3 id="48px">48px</h3>
-<div class="icon size-48x48">
-<svg
-  width="32"
-  height="32"
-  viewBox="0 0 16 16"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M 2.5 1 A 1 1 0 0 0 2.5 4 A 1 1 0 0 0 2.5 1 M 2.5 4 L 2.5 11.5 A 2 2 0 0 0 4.5 13.5 L 10.5 13.5 M 9 12 L 10.5 13.5 L 9 15 M 13.5 12 A 1 1 0 0 0 13.5 15 A 1 1 0 0 0 13.5 12 M 13.5 12 L 13.5 4.5 A 2 2 0 0 0 11.5 2.5 L 5.5 2.5 M 7 1 L 5.5 2.5 L 7 4"
-    fill="none"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-width="1.125px"
-  ></path>
-</svg>
-</div>
-
-<p>Take a screeshot of this icon with Firefox consoles <code>:screenshot</code> command:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>:screenshot --selector &quot;.icon.size-48x48&quot; --dpr 1 --filename &quot;favicon.png&quot;
+<h1 id="docker-in-docker-service-and-docker-hub-ratelimit">Docker-in-Docker service and Docker Hub ratelimit</h1>
+<p>The recommended way of running Docker commands in a GitLab CI Kubernets runner is to use a service to run Docker-in-Docker container (<code>docker:dind</code>). By default the <code>docker:dind</code> container pulls container images from Docker Hub without caching. This can cause problems as pulls from Docker Hub are rate-limited.</p>
+<p>This tutorial tests how <code>docker pull ubuntu:24.04</code> commands consume Docker Hub ratelimit and provides example on how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.</p>
+<h2 id="how-to-check-if-docker-pull-commands-are-cached">How to check if <code>docker pull</code> commands are cached</h2>
+<p>Create a new GitLab project with <code>.gitlab-ci.yml</code> and <code>scripts/check-docker-hub-ratelimit.sh</code> files.</p>
+<p>The <code>scripts/check-docker-hub-ratelimit.sh</code> script prints current Docker Hub ratelimit and also writes the result to a file if filename is given as first parameter. See <a href="https://docs.docker.com/docker-hub/download-rate-limit/#how-can-i-check-my-current-rate">Docker Hub usage and rate limits</a> article in Docker documentation for more details.</p>
+<div class="language-yaml highlight"><span class="filename">scripts/check-docker-hub-ratelimit.sh</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#!/bin/sh -e</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="l l-Scalar l-Scalar-Plain">fetch_ratelimit() {</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">curl -I -H &quot;Authorization</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bearer $1&quot; https://registry-1.docker.io/v2/ratelimitpreview/test/manifests/latest 2&gt;&amp;1 | grep -i ratelimit</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="err">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="l l-Scalar l-Scalar-Plain">target=$1</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="l l-Scalar l-Scalar-Plain">token=$(curl -s &quot;https://auth.docker.io/token?service=registry.docker.io&amp;scope=repository:ratelimitpreview/test:pull&quot; | jq -r .token)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="l l-Scalar l-Scalar-Plain">if [ -n &quot;$target&quot; ]; then</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">fetch_ratelimit $token | tee $target;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="l l-Scalar l-Scalar-Plain">else</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">fetch_ratelimit $token;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="l l-Scalar l-Scalar-Plain">fi</span>
 </span></code></pre></div>
-<h3 id="512px">512px</h3>
-<div class="icon size-512x512">
-<svg
-  width="32"
-  height="32"
-  viewBox="0 0 16 16"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M 2.5 1 A 1 1 0 0 0 2.5 4 A 1 1 0 0 0 2.5 1 M 2.5 4 L 2.5 11.5 A 2 2 0 0 0 4.5 13.5 L 10.5 13.5 M 9 12 L 10.5 13.5 L 9 15 M 13.5 12 A 1 1 0 0 0 13.5 15 A 1 1 0 0 0 13.5 12 M 13.5 12 L 13.5 4.5 A 2 2 0 0 0 11.5 2.5 L 5.5 2.5 M 7 1 L 5.5 2.5 L 7 4"
-    fill="none"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-width="1.125px"
-  ></path>
-</svg>
-</div>
-
-<p>Take a screeshot of this icon with Firefox consoles <code>:screenshot</code> command:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>:screenshot --selector &quot;.icon.size-512x512&quot; --dpr 1 --filename &quot;logo-512.png&quot;
+<p>The pipeline defined by <code>.gitlab-ci.yml</code> tries to pull the same Docker image twice and checks if the rate limit headers are different after first and second pull.</p>
+<div class="language-yaml highlight"><span class="filename">.gitlab-ci.yml</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">default</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker:cli</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;docker:dind&quot;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;--tls=false&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;--host=tcp://0.0.0.0:2375&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nt">variables</span><span class="p">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">DOCKER_TLS_CERTDIR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">DOCKER_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp://docker:2375</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nt">stages</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nt">test-caching</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">before_script</span><span class="p">:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apk add curl jq</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker pull ubuntu:24.04</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./scripts/check-docker-hub-ratelimit.sh 1st.txt</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker rmi ubuntu:24.04</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker pull ubuntu:24.04</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./scripts/check-docker-hub-ratelimit.sh 2nd.txt</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">diff 1st.txt 2nd.txt</span>
+</span></code></pre></div>
+<p>The pipeline should fail, if images are pulled directly from Docker Hub.</p>
+<h2 id="how-to-setup-pull-through-cache-to-kubernetes-runner">How to setup pull-through cache to Kubernetes runner</h2>
+<p>Manifests for configuring pull-through cache and configmap are available in the repository that provides this website.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cicd-tutorials/cicd-tutorials.net.git
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>docs/tutorials/gitlab-ci/docker-hub-ratelimit
+</span></code></pre></div>
+<p>Configure pull-through cache and configmap for GitLab runner by running <code>kubectl apply -f manifests/</code>.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>manifests/
+</span></code></pre></div>
+<p>These manifests assume that GitLab runner is using gitlab-runner namespace. Edit the namespace value in <a href="manifests/docker-config.yaml">docker-config.yaml</a> if this is not the case.</p>
+<p>Modify the GitLab runner configuration so that the configmap defined in <a href="manifests/docker-config.yaml">docker-config.yaml</a> is mounted to all containers launched by the GitLab runner. Example of a full <code>values.yaml</code> help input file below.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">gitlabUrl</span><span class="p">:</span><span class="w"> </span><span class="c1"># Your instance URL</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">rbac</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> create</span><span class="p">:</span><span class="w"> </span><span class="nv">true</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">runnerToken</span><span class="p">:</span><span class="w"> </span><span class="c1"># Your runner token</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">runners</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="no">[[runners]]</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="no">executor = &quot;kubernetes&quot;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">      </span><span class="no">[runners.kubernetes]</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="no">image = &quot;alpine:3.12&quot;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="no">privileged = true</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="no">[[runners.kubernetes.volumes.config_map]]</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">          </span><span class="no">name = &quot;dockerd-config&quot;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">          </span><span class="no">mount_path = &quot;/etc/docker/daemon.json&quot;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">          </span><span class="no">sub_path = &quot;daemon.json&quot;</span>
 </span></code></pre></div>
 
 
@@ -760,7 +836,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 13, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 15, 2024</span>
   </span>
 
     
@@ -848,10 +924,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "content.action.view", "navigation.instant", "navigation.sections"], "search": "javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.action.view", "navigation.instant", "navigation.sections"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.525ec568.min.js"></script>
       
     
   </body>

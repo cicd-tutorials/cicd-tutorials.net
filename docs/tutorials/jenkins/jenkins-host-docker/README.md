@@ -4,7 +4,9 @@ description: Tutorial on how to run Jenkins inside a container with Docker clien
 
 # Jenkins with access to hosts Docker engine
 
-Note that by default each of the example docker compose configurations will create their own volumes for the data. This might not be what you want. In order to use the same volumes for every docker compose configuration, run docker compose with `-p` (or `--project-name`) option. This can also be done by setting `COMPOSE_PROJECT_NAME` environment variable:
+This tutorial provider Docker Compose configuration for running Jenkins inside a container with Docker client that controls host machines Docker engine using a socket. This works well in development environments as you can inspect containers created by Jenkins from the host system.
+
+Note that by default each of the example Docker Compose configurations will create their own volumes for the data. This might not be what you want, if you want to use configuration from [Integrating Jenkins and SonarQube](../sonarqube-jenkins/README.md) as well. In order to use the same volumes for every docker compose configuration, run docker compose with `-p` (or `--project-name`) option. This can also be done by setting `COMPOSE_PROJECT_NAME` environment variable:
 
 ```sh
 export COMPOSE_PROJECT_NAME=jenkins

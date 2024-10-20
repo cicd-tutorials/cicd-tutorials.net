@@ -30,17 +30,33 @@ When running Jenkins in a container, we will want to define ports and volumes. T
 
 These files are available in the repository that provides this website. In order to run Jenkins container with Docker-in-Docker support, `cd` into `docs/tutorials/jenkins/jenkins-host-docker` directory and run `docker compose up`.
 
-```sh
-cd docs/tutorials/jenkins/jenkins-host-docker
+=== "Background"
 
-# If you want to see logs in the current terminal
-docker compose up --build
+    To run the Jenkins container in the background, execute `docker compose up` command with `-d`/`--detach` flag:
 
-# Or if you want to run the container in the background
-docker compose up --build --detach
-```
+    ```sh
+    cd docs/tutorials/jenkins/jenkins-host-docker
 
-The initial admin password can be easily printed with `docker compose exec`:
+    docker compose up --build --detach
+    ```
+
+    This allows the Jenkins container to continue running even if you close the terminal session. Use `docker compose logs` command to see the logs.
+
+=== "Foreground"
+
+    To run the Jenkins container in the foreground, execute `docker compose up` command without `-d`/`--detach` flag:
+
+    ```sh
+    cd docs/tutorials/jenkins/jenkins-host-docker
+
+    docker compose up --build
+    ```
+
+    You can now monitor the logs produced by the Jenkins container in your current shell. However, if you close the terminal session or send an interrupt signal (for example by pressing CTRL+C), the Jenkins container will be stopped.
+
+---
+
+The initial admin password can be printed with `docker compose exec` command:
 
 ```sh
 docker compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword

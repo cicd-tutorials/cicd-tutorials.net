@@ -14,7 +14,7 @@ Create a new GitLab project with `.gitlab-ci.yml` and `scripts/check-docker-hub-
 
 The `scripts/check-docker-hub-ratelimit.sh` script prints current Docker Hub ratelimit and also writes the result to a file if filename is given as first parameter. See [Docker Hub usage and rate limits](https://docs.docker.com/docker-hub/download-rate-limit/#how-can-i-check-my-current-rate) article in Docker documentation for more details.
 
-```yaml title="scripts/check-docker-hub-ratelimit.sh"
+```sh title="scripts/check-docker-hub-ratelimit.sh"
 ---8<--- "docs/tutorials/gitlab-ci/docker-hub-ratelimit/scripts/check-docker-hub-ratelimit.sh"
 ```
 

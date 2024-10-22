@@ -1,14 +1,19 @@
 #!/bin/sh -xe
 
+get_hostname() {
+  kubectl get service animals -o json | \
+    jq -re .status.loadBalancer.ingress[0].hostname
+}
+
 # Wait until hostname is available
-until kubectl get service animals -o json | jq -re .status.loadBalancer.ingress[0].hostname; do
-    sleep 15;
+until get_hostname; do
+  sleep 15;
 done;
 
 # Wait until animals application is up
-hostname=$(kubectl get service animals -o json | jq -re .status.loadBalancer.ingress[0].hostname)
+hostname=$(get_hostname)
 until curl -sSf $hostname; do
-    sleep 15;
+  sleep 15;
 done;
 
 echo "Load-balancer URL: $hostname"

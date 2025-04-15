@@ -1,5 +1,8 @@
 ---
 description: Tutorial on how to run Jenkins inside a container with Docker client that controls host machines Docker engine using a socket.
+tags:
+  - Docker
+  - Jenkins
 ---
 
 # Jenkins with access to hosts Docker engine

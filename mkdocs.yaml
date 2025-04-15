@@ -64,6 +64,7 @@ plugins:
       enable_creation_date: true
   - search
   - social
+  - tags
 
 markdown_extensions:
   - admonition

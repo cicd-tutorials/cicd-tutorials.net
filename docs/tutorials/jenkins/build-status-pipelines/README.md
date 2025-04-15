@@ -1,5 +1,7 @@
 ---
 description: Tutorial on how to configure a Jenkins pipeline that creates pipelines with five different statuses into a new folder using Job DSL.
+tags:
+  - Jenkins
 ---
 
 # Build status pipelines and Job DSL

@@ -2,38 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://cicd-tutorials.net/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/assets/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/tutorials/docker/docker-on-wsl/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/tutorials/gitlab-ci/docker-hub-ratelimit/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/tutorials/jenkins/ansible-kubernetes/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/tutorials/jenkins/build-status-pipelines/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/tutorials/jenkins/jenkins-host-docker/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/tutorials/jenkins/parallel-robot-pipeline/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
     <url>
          <loc>https://cicd-tutorials.net/tutorials/jenkins/sonarqube-jenkins/</loc>
-         <lastmod>2024-10-22</lastmod>
+         <lastmod>2025-04-17</lastmod>
     </url>
 </urlset>

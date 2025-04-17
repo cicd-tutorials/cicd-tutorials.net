@@ -1,2 +1,2 @@
 #!/bin/sh
-robot "$@" ./suites
+exec robot "$@" ./suites

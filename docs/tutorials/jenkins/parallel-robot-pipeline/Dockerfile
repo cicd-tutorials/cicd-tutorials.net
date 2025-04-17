@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.48.0-noble AS base
+FROM mcr.microsoft.com/playwright:v1.51.1-noble AS base
 
 # Disable interactive configuration
 ENV DEBIAN_FRONTEND='noninteractive'

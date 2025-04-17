@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Build container image
       working-directory: docs/tutorials/jenkins/parallel-robot-pipeline/
       run: |
@@ -31,7 +31,7 @@ jobs:
         done
     - name: Store logs
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: raw-logs
         path: robot_output
@@ -63,7 +63,7 @@ jobs:
       with:
         python-version: '3.10'
     - name: Download logs
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         path: work/
     - name: Install robot framework
@@ -74,7 +74,7 @@ jobs:
         mkdir rebot_output
         rebot -d rebot_output -o output.xml -N "${{ github.workflow }}" --nostatusrc */*.xml
     - name: Store processed logs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: combined-logs
         path: work/rebot_output

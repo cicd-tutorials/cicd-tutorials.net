@@ -1,5 +1,8 @@
 ---
 description: Tutorial on how to install and configure Docker and Docker Compose on Ubuntu running inside Windows Subsystem for Linux.
+tags:
+  - Docker
+  - Windows Subsystem for Linux
 ---
 
 # Install Docker on Windows Subsystem for Linux
@@ -73,7 +76,7 @@ If not launched automatically, open the installed Ubuntu distro (e.g., by clicki
 
 Open Ubuntu you just installed and follow [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) instructions.
 
-__tl;dr:__ Run the convenience script available in `get.docker.com`:
+**tl;dr:** Run the convenience script available in `get.docker.com`:
 
 ```sh
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -172,7 +175,7 @@ If `docker` commands print `Cannot connect to the Docker daemon at unix:///var/r
 
 Follow [Install Docker Compose](https://docs.docker.com/compose/install/) instructions for Linux.
 
-__tl;dr:__ Install Docker Compose with the distros package manager:
+**tl;dr:** Install Docker Compose with the distros package manager:
 
 ```sh
 sudo apt-get update

@@ -20,6 +20,7 @@ nav:
   - Jenkins:
       - ./tutorials/jenkins/jenkins-host-docker/README.md
       - ./tutorials/jenkins/ansible-kubernetes/README.md
+      - ./tutorials/jenkins/opentofu-kubernetes/README.md
       - ./tutorials/jenkins/build-status-pipelines/README.md
       - ./tutorials/jenkins/parallel-robot-pipeline/README.md
       - ./tutorials/jenkins/sonarqube-jenkins/README.md

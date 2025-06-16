@@ -1,0 +1,56 @@
+String d = "docs/tutorials/jenkins/opentofu-kubernetes"
+def status = 0
+
+pipeline {
+  agent any
+  environment {
+    KUBE_CONFIG_PATH = credentials('kubeconfig')
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'main', url: 'https://github.com/cicd-tutorials/feedback.git'
+      }
+    }
+    stage('Plan') {
+      agent { docker {
+        image 'ghcr.io/opentofu/opentofu:latest'
+        args '--entrypoint=""'
+        reuseNode true
+      } }
+      steps {
+        dir("iac/tf") {
+          sh "tofu init -no-color"
+          script {
+            status = sh returnStatus: true, script: "tofu plan -no-color -detailed-exitcode -out ${env.BUILD_TAG}.plan"
+          }
+          stash includes: "${env.BUILD_TAG}.plan", name: 'plan'
+        }
+      }
+    }
+    stage('Apply') {
+      agent { docker {
+        image 'ghcr.io/opentofu/opentofu:latest'
+        args '--entrypoint=""'
+        reuseNode true
+      } }
+      when {
+        beforeInput true
+        equals expected: 2, actual: status
+      }
+      input {
+        message 'Apply the plan?'
+        ok 'Apply'
+      }
+      steps {
+        dir("iac/tf") {
+          unstash 'plan'
+          sh """
+            tofu init -no-color
+            tofu apply -no-color ${env.BUILD_TAG}.plan
+          """
+        }
+      }
+    }
+  }
+}

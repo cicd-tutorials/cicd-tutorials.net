@@ -25,7 +25,7 @@ In the _New credentials_ form:
 
 ## Configure the pipeline
 
-First, create a new pipeline via [New Item](http://localhost:8080/view/all/newJob) button in the rigth side menu of the Jenkins dashboard. The name of the pipeline could be for example `Animals` and it should be an pipeline.
+First, create a new pipeline via [New Item](http://localhost:8080/view/all/newJob) button in the right side menu of the Jenkins dashboard. The name of the pipeline could be for example `Animals` and it should be an pipeline.
 
 In the configure pipeline view, scroll to the bottom and under Pipeline sub-header select `Pipeline script from SCM`. SCM type should be `Git` and Repository URL the url of this repository: `https://github.com/cicd-tutorials/cicd-tutorials.net.git`. Ensure that branch specifier includes `main` branch of the repository and modify the Script Path to be `docs/tutorials/jenkins/ansible-kubernetes/Jenkinsfile`.
 
@@ -47,6 +47,6 @@ After the Ansible playbook has been executed, the pipeline runs [wait-until-serv
 ---8<--- "docs/tutorials/jenkins/ansible-kubernetes/wait-until-service-up.sh"
 ```
 
-You can find the URL of the created load-balancer from the console output of the build. Open the application with your browser or user curl to see the application response.
+You can find the URL of the created load-balancer from the console output of the build. Open the application with your browser or use curl to see the application response.
 
 In addition, after the first execution Jenkins should have updated the project configuration to contain parameters defined in the pipeline and we can configure the image tag in _Build with Parameters_ menu.

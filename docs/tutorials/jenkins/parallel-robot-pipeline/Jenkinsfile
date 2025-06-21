@@ -53,7 +53,7 @@ pipeline {
   }
   post {
     success {
-      robot outputPath: 'rebot_output', otherFiles: '**/*.png', onlyCritical: false, passThreshold: 100.0, unstableThreshold: 0.0
+      robot outputPath: 'rebot_output', otherFiles: '**/*.png', passThreshold: 100.0, unstableThreshold: 0.0
     }
   }
 }

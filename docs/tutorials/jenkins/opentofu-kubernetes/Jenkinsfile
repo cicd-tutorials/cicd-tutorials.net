@@ -5,6 +5,7 @@ pipeline {
   agent any
   environment {
     KUBE_CONFIG_PATH = credentials('kubeconfig')
+    TF_VAR_namespace = "terraform-example"
   }
   stages {
     stage('Checkout') {

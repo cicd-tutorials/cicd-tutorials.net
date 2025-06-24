@@ -6,6 +6,10 @@ description: Tutorial on how to configure a Jenkins pipeline that deploys an fee
 
 This tutorial contains a pipeline that deploys an feedback application to a Kubernetes cluster.
 
+!!! warning "This example uses local state"
+
+    This example does not configure state backend and thus stores the state locally. When managing real infrastructure, configure a persistent state storage, for example, with S3 bucket or Postgres database as the backend.
+
 ## Prerequisites and preparing the Jenkins instance
 
 See [Deploy application to Kubernetes with Ansible](../ansible-kubernetes/) tutorial for prerequisites and instruction for configuring access from the Jenkins instance to the Kubernetes cluster.

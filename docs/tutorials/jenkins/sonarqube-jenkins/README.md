@@ -47,7 +47,7 @@ If this succeeds, you are ready to move this analysis into Jenkins.
 
 First, install SonarQube Scanner plugin to your Jenkins instance through [Manage Jenkins > Manage plugins](http://localhost:8080/pluginManager/available) menu. Configure SonarQube instance to SonarQube servers section of the [Manage Jenkins > Configure System](http://localhost:8080/configure) menu: Use `http://sonarqube:9000` as the server URL and create a secret text credential for the access token you stored earlier.
 
-??? example "Alternatives for using `sonarqube` hostname"
+??? example "Use hosts IP instead of `sonarqube` hostname"
 
     The `sonarqube` domain name is by default only available for containers attached to the same network. Thus the the connection from Jenkins container works with the `sonarqube` hostname, but opening these links from the browser will fail.
 

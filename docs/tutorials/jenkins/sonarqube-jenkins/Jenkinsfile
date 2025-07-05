@@ -1,4 +1,8 @@
-def net = '' // Set the value to 'host' to use host networking.
+def attachJenkinsNetwork = true
+// If true, the pipeline will attach the SonarQube scanner to the same network
+// with Jenkins and SonarQube containers.
+
+def scannerArgs = ''
 
 pipeline {
   agent any
@@ -6,9 +10,10 @@ pipeline {
     stage ('Prepare') {
       steps {
         script {
-          if (net == '') {
+          if (attachJenkinsNetwork == true) {
             // Get the name of the network that Jenkins container is using.
-            net = sh returnStdout: true, script: 'docker inspect $(hostname) -f \'{{ range $k, $v := .NetworkSettings.Networks }}{{ $k }}{{ end }}\''
+            def net = sh returnStdout: true, script: 'docker inspect $(hostname) -f \'{{ range $k, $v := .NetworkSettings.Networks }}{{ $k }}{{ end }}\''
+            scannerArgs = "--network ${net.trim()}"
           }
         }
       }
@@ -24,7 +29,7 @@ pipeline {
         docker {
           image 'sonarsource/sonar-scanner-cli'
           // In order to be able to use http://sonarqube:9000 we need to be in the same network as Jenkins and SonarQube are in.
-          args  "--net $net"
+          args scannerArgs
           // To quarantee that the workspace contains the sources pulled in previous stage, we need to use the pipeline level workspace.
           reuseNode true
         }

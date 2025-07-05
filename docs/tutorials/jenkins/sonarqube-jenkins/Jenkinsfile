@@ -1,9 +1,22 @@
+def net = '' // Set the value to 'host' to use host networking.
+
 pipeline {
   agent any
   stages {
+    stage ('Prepare') {
+      steps {
+        script {
+          if (net == '') {
+            // Get the name of the network that Jenkins container is using.
+            net = sh returnStdout: true, script: 'docker inspect $(hostname) -f \'{{ range $k, $v := .NetworkSettings.Networks }}{{ $k }}{{ end }}\''
+          }
+        }
+      }
+    }
     stage('Checkout') {
       steps {
-        git "${GIT_URL}"
+        // Replace the git step below with step that pulls the repository you want to analyze.
+        git branch: 'main', url: 'https://github.com/cicd-tutorials/feedback.git'
       }
     }
     stage('Analyze') {
@@ -11,7 +24,7 @@ pipeline {
         docker {
           image 'sonarsource/sonar-scanner-cli'
           // In order to be able to use http://sonarqube:9000 we need to be in the same network as Jenkins and SonarQube are in.
-          args  '--net jenkins_default'
+          args  "--net $net"
           // To quarantee that the workspace contains the sources pulled in previous stage, we need to use the pipeline level workspace.
           reuseNode true
         }

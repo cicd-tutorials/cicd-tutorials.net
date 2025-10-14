@@ -17,6 +17,9 @@ pipeline {
             args '--entrypoint=""'
             reuseNode true
           } }
+          environment {
+            BROWSER = "chromium"
+          }
           steps {
             sh "robot -d robot_output -l none -r none -o chromium.xml -N Chromium -v URL:${params.URL} --nostatusrc $d/suites/"
             // If reuseNode true was not used, we would have to stash the output XML.
@@ -29,8 +32,11 @@ pipeline {
             args '--entrypoint=""'
             reuseNode true
           } }
+          environment {
+            BROWSER = "firefox"
+          }
           steps {
-            sh "robot -d robot_output -l none -r none -o b.xml -N Firefox -v URL:${params.URL} --nostatusrc $d/suites/"
+            sh "robot -d robot_output -l none -r none -o firefox.xml -N Firefox -v URL:${params.URL} --nostatusrc $d/suites/"
             // If reuseNode true was not used, we would have to stash the output XML.
             // stash includes: 'robot_output/**', name: 'Firefox'
           }

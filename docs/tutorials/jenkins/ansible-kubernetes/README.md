@@ -1,5 +1,9 @@
 ---
 description: Tutorial on how to configure a Jenkins pipeline that deploys an simple hello-world application to a Kubernetes cluster.
+tags:
+  - Ansible
+  - Jenkins
+  - Kubernetes
 ---
 
 # Deploy application to Kubernetes with Ansible

@@ -1,5 +1,9 @@
 ---
 description: Tutorial on how to configure a Jenkins pipeline that executes Robot Framework automation tasks with docker agent in parallel stages as well as combines and stores the produced HTML/XML report files.
+tags:
+  - Docker
+  - Jenkins
+  - Robot Framework
 ---
 
 # Parallel Robot Framework pipeline

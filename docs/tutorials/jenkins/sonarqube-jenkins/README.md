@@ -1,5 +1,8 @@
 ---
 description: Tutorial on how to push code scanning results from Jenkins pipeline to SonarQube and how to display SonarQube data in Jenkins.
+tags:
+  - Jenkins
+  - SonarQube
 ---
 
 # Integrating Jenkins and SonarQube

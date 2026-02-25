@@ -1,5 +1,8 @@
 ---
 description: Tutorial on how to test if Docker-in-Docker service in GitLab CI accesses Docker Hub directly and how to configure pull-through cache to an Kubernetes cluster working as a GitLab runner.
+tags:
+  - Docker
+  - GitLab CI
 ---
 
 # Docker-in-Docker service and Docker Hub ratelimit
